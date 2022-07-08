@@ -20,8 +20,8 @@ public class LoginStepImpl {
 	private WebDriver driver = LoginRunner.driver;
 	private LoginPage loginPage = LoginRunner.loginPage;
 
-	@Given("A User is on the Login page")
-	public void a_user_is_on_the_login_page() {
+	@Given("A User is on the Home page")
+	public void a_user_is_on_the_home_page() {
 		driver.get("http://localhost:8080/home.html");
 	}
 
@@ -30,13 +30,11 @@ public class LoginStepImpl {
 		loginPage.usernameInput.sendKeys(username);
 		loginPage.passwordInput.sendKeys(password);
 		loginPage.loginButton.click();
-		throw new io.cucumber.java.PendingException();
 	}
 
 	@Then("The User should be on their account page")
 	public void the_user_should_be_on_their_account_page() {
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Your Home Page"));
-
 		assertEquals("Your Home Page", driver.getTitle());
 	}
 

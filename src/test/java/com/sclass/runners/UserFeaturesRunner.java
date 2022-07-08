@@ -6,16 +6,16 @@ import org.junit.platform.suite.api.Suite;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import com.sclass.pages.LoginPage;
+import com.sclass.pages.UserPage;
 
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
 
 @Suite
-public class CreateAccountRunner {
+public class UserFeaturesRunner {
 
 	public static WebDriver driver;
-	public static LoginPage loginPage;
+	public static UserPage userPage;
 
 	@BeforeAll
 	public static void setup() {
@@ -24,12 +24,11 @@ public class CreateAccountRunner {
 		System.setProperty("webdriver.chrome.driver", chrome.getAbsolutePath());
 		driver = new ChromeDriver();
 
-		loginPage = new LoginPage(driver);
+		userPage = new UserPage(driver);
 	}
 
 	@AfterAll
 	public static void teardown() {
 		driver.quit();
 	}
-
 }

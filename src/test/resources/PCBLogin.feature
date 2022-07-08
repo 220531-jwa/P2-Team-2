@@ -21,7 +21,7 @@ Feature: PC Builder Login
 
 
 	Background:
-		Given A User is on the Login page
+		Given A User is on the Home page
 
 
   Scenario Outline: A User can login using their credentials

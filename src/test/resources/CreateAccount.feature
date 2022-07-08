@@ -18,21 +18,15 @@
 #Sample Feature Definition Template
 
 Feature: PC Builder Create Account
-  I want to use this template for my feature file
 
  Background: 
+	Given a User is on the Home page
 
-	Given a User is on the Create Account page
-
-  Scenario Outline: A user can create a new account
-    s
-    When the User types in a new "<username>" into the 
-    And the User types in a new "<password>"
-    
+  Scenario: A User can create a new account
+    When A User types in a new "<username>" and "<password>" into the login form and clicks create account button
     Then The User should receive a success message
-    And then be redirected to their user page. 
+    And Get redirected to their user page 
 
     Examples: 
-      | username | password |
-      | 		     |          |
-      |  	       |          |
+      |username	| password	|
+      |anything	|	pass123		|
