@@ -1,0 +1,118 @@
+package com.sclass.steps;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.sclass.pages.CreateBuildPage;
+import com.sclass.pages.LoginPage;
+import com.sclass.pages.UserPage;
+import com.sclass.runners.CreateBuildRunner;
+import com.sclass.runners.LoginRunner;
+
+import io.cucumber.java.en.*;
+
+public class CreateBuildStepImpl {
+
+	private WebDriver driver = CreateBuildRunner.driver;
+	private LoginPage loginPage = CreateBuildRunner.loginPage;
+	private UserPage userPage = CreateBuildRunner.userPage;
+	private CreateBuildPage createBuildPage = CreateBuildRunner.createBuildPage;
+
+	
+	
+
+	@Given("A User is logged in and on the Create Build Page")
+	public void a_user_is_logged_in_and_on_the_create_build_page() {
+		driver.get("http://localhost:8080/home.html");
+		loginPage.usernameInput.sendKeys("username"); //TODO: change these values
+		loginPage.passwordInput.sendKeys("password");
+		loginPage.loginButton.click();
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Your Home Page"));
+		//		assertEquals("Your Home Page", driver.getTitle());
+		userPage.createBuild.click();
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Create a Build"));
+		//		assertEquals("Create a Build", driver.getTitle());
+	
+		createBuildPage.cpuSelector = new Select(driver.findElement(By.id("CPU")));
+		createBuildPage.motherboardSelector = new Select(driver.findElement(By.id("Motherboard")));
+		createBuildPage.ramSelector = new Select(driver.findElement(By.id("RAM")));
+		createBuildPage.storageSelector = new Select(driver.findElement(By.id("Storage")));
+		createBuildPage.caseSelector = new Select(driver.findElement(By.id("Case")));
+		createBuildPage.psuSelector = new Select(driver.findElement(By.id("PSU")));
+	}
+
+	@When("A User click the CPU Selector")
+	public void a_user_click_the_cpu_selector() {
+		createBuildPage.cpuSelector.selectByIndex(0);
+	}
+
+	@Then("The User should be able to pick a CPU")
+	public void the_user_should_be_able_to_pick_a_cpu() {
+		
+		assertEquals("0", createBuildPage.cpuSelector.getFirstSelectedOption().getText());
+	}
+
+	@When("A User click the Motherboard Selector")
+	public void a_user_click_the_motherboard_selector() {
+		
+		createBuildPage.motherboardSelector.selectByIndex(0);
+	}
+
+	@Then("The User should be able to pick a motherboard")
+	public void the_user_should_be_able_to_pick_a_motherboard() {
+		
+		assertEquals("0", createBuildPage.motherboardSelector.getFirstSelectedOption().getText());
+	}
+
+	@When("A User click the RAM Selector")
+	public void a_user_click_the_ram_selector() {
+		createBuildPage.ramSelector.selectByIndex(0);
+	}
+
+	@Then("The User should be able to pick a RAM")
+	public void the_user_should_be_able_to_pick_a_ram() {
+		
+		assertEquals("0", createBuildPage.ramSelector.getFirstSelectedOption().getText());
+		
+	}
+
+	@When("A User click the Storage Selector")
+	public void a_user_click_the_storage_selector() {
+		createBuildPage.storageSelector.selectByIndex(0);
+	}
+
+	@Then("The User should be able to pick a Storage")
+	public void the_user_should_be_able_to_pick_a_storage() {
+		assertEquals("0", createBuildPage.storageSelector.getFirstSelectedOption().getText());
+	}
+
+	@When("A User click the Case Selector")
+	public void a_user_click_the_case_selector() {
+		createBuildPage.caseSelector.selectByIndex(0);
+	}
+
+	@Then("The User should be able to pick a Case")
+	public void the_user_should_be_able_to_pick_a_case() {
+		assertEquals("0", createBuildPage.caseSelector.getFirstSelectedOption().getText());
+	}
+
+	@When("A User click the PowerSupply Selector")
+	public void a_user_click_the_power_supply_selector() {
+		createBuildPage.psuSelector.selectByIndex(0);
+	}
+
+	@Then("The User should be able to pick a PowerSupply")
+	public void the_user_should_be_able_to_pick_a_power_supply() {
+		assertEquals("0", createBuildPage.psuSelector.getFirstSelectedOption().getText());
+	}
+
+
+
+}

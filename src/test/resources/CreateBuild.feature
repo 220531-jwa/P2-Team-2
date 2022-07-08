@@ -20,12 +20,27 @@
 Feature: PC Builder Create Build
  
  Background:
- 	Given A User is logged in on the homepage
+ 	Given A User is logged in and on the Create Build Page
  
-  Scenario Outline: A User can Create new Blank Build
+  Scenario: A User can Create New Build button
  
- 	When A User clicks the "new build" button
- 	Then The User should be redirected to a new, Blank Build
+ 	When A User click the CPU Selector
+ 	Then The User should be able to pick a CPU
+ 	
+ 	When A User click the Motherboard Selector
+ 	Then The User should be able to pick a motherboard
+ 	
+ 	When A User click the RAM Selector
+ 	Then The User should be able to pick a RAM
+ 	
+ 	When A User click the Storage Selector
+ 	Then The User should be able to pick a Storage
+ 	
+ 	When A User click the Case Selector
+ 	Then The User should be able to pick a Case
+ 	
+ 	When A User click the PowerSupply Selector
+ 	Then The User should be able to pick a PowerSupply
  
 
   

@@ -22,10 +22,11 @@ public class CreateAccountStepImpl {
 	private WebDriver driver = LoginRunner.driver;
 	private LoginPage loginPage = LoginRunner.loginPage;
 
-	@Given("A User is on the Home page")
-	public void a_user_is_on_the_home_page() {
-		driver.get("http://localhost:8080/home.html");
-	}
+//	@Given("A User is on the Home page")
+//	public void a_user_is_on_the_home_page();
+//	{
+//		driver.get("http://localhost:8080/home.html");
+//	}
 
 	@When("A User types in a new {string} and {string} into the login form and clicks create account button")
 	public void a_user_types_in_a_new_and_into_the_login_form_and_clicks_create_account_button(String username,
