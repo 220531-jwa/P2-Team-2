@@ -8,7 +8,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.sclass.pages.LoginPage;
 import com.sclass.pages.UserPage;
+import com.sclass.runners.LoginRunner;
 import com.sclass.runners.UserFeaturesRunner;
 
 import io.cucumber.java.en.Given;
@@ -19,16 +21,20 @@ public class UserFeaturesStepImpl {
 
 	private WebDriver driver = UserFeaturesRunner.driver;
 	private UserPage userPage = UserFeaturesRunner.userPage;
-	int userId;
+	private LoginPage loginPage = LoginRunner.loginPage;
 
-	@Given("A User has a Valid Account")
-	public void a_user_has_a_valid_account() {
-		userId = 1;
+	@Given("A User is logged in")
+	public void a_user_is_logged_in(String username, String password) {
+		driver.get("http://localhost:8080/loginPage.html");
+		loginPage.usernameInput.sendKeys(username);
+		loginPage.passwordInput.sendKeys(password);
+		loginPage.loginButton.click();
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Your User Page"));
 	}
 
-	@Given("A User is on their AccountPage")
-	public void a_user_is_on_their_account_page() {
-		driver.get("http://localhost:8080/" + userId);
+	@Given("A User is on their UserPage")
+	public void a_user_is_on_their_user_page() {
+		assertEquals(driver.getCurrentUrl(), "http://localhost:8080/userPage.html");
 	}
 
 	@When("They click they click the CreateBuild button")

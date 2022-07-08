@@ -19,10 +19,8 @@
 
 Feature: PC Builder Login
 
-
 	Background:
 		Given A User is on the Home page
-
 
   Scenario Outline: A User can login using their credentials
     When A User enters their "<username>" and "<password>" in the login form and click the login button

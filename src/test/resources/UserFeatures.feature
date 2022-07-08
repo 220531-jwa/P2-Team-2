@@ -20,8 +20,8 @@
 Feature: User Account Features
 
 	Background:
-		Given A User has a Valid Account
-		And A User is on their AccountPage	
+		Given A User is logged in
+		And A User is on their UserPage	
     
   Scenario: Create a New Build
     When They click they click the CreateBuild button
