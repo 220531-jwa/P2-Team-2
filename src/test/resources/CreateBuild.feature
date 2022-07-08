@@ -20,7 +20,8 @@
 Feature: PC Builder Create Build
  
  Background:
- 	Given A User is logged in and on the Create Build Page
+ 	Given A User is logged in 
+ 	And on the Create Build Page
  
   Scenario: A User can Create New Build button
  

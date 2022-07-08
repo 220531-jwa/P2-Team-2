@@ -27,29 +27,38 @@ public class CreateBuildStepImpl {
 
 	
 	
-
-	@Given("A User is logged in and on the Create Build Page")
-	public void a_user_is_logged_in_and_on_the_create_build_page() {
+	@Given("A User is logged in")
+	public void a_user_is_logged_in() {
 		driver.get("http://localhost:8080/home.html");
 		loginPage.usernameInput.sendKeys("username"); //TODO: change these values
 		loginPage.passwordInput.sendKeys("password");
 		loginPage.loginButton.click();
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Your Home Page"));
 		//		assertEquals("Your Home Page", driver.getTitle());
+	}
+
+	@Given("on the Create Build Page")
+	public void on_the_create_build_page() {
+
 		userPage.createBuild.click();
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Create a Build"));
 		//		assertEquals("Create a Build", driver.getTitle());
 	
-		createBuildPage.cpuSelector = new Select(driver.findElement(By.id("CPU")));
-		createBuildPage.motherboardSelector = new Select(driver.findElement(By.id("Motherboard")));
-		createBuildPage.ramSelector = new Select(driver.findElement(By.id("RAM")));
-		createBuildPage.storageSelector = new Select(driver.findElement(By.id("Storage")));
-		createBuildPage.caseSelector = new Select(driver.findElement(By.id("Case")));
-		createBuildPage.psuSelector = new Select(driver.findElement(By.id("PSU")));
 	}
+
+	
+	
+
+	
+		
+
+	
+	
+
 
 	@When("A User click the CPU Selector")
 	public void a_user_click_the_cpu_selector() {
+		createBuildPage.cpuSelector = new Select(driver.findElement(By.id("CPU")));
 		createBuildPage.cpuSelector.selectByIndex(0);
 	}
 
@@ -61,7 +70,7 @@ public class CreateBuildStepImpl {
 
 	@When("A User click the Motherboard Selector")
 	public void a_user_click_the_motherboard_selector() {
-		
+		createBuildPage.motherboardSelector = new Select(driver.findElement(By.id("Motherboard")));
 		createBuildPage.motherboardSelector.selectByIndex(0);
 	}
 
@@ -73,6 +82,7 @@ public class CreateBuildStepImpl {
 
 	@When("A User click the RAM Selector")
 	public void a_user_click_the_ram_selector() {
+		createBuildPage.ramSelector = new Select(driver.findElement(By.id("RAM")));
 		createBuildPage.ramSelector.selectByIndex(0);
 	}
 
@@ -85,6 +95,7 @@ public class CreateBuildStepImpl {
 
 	@When("A User click the Storage Selector")
 	public void a_user_click_the_storage_selector() {
+		createBuildPage.storageSelector = new Select(driver.findElement(By.id("Storage")));
 		createBuildPage.storageSelector.selectByIndex(0);
 	}
 
@@ -95,6 +106,7 @@ public class CreateBuildStepImpl {
 
 	@When("A User click the Case Selector")
 	public void a_user_click_the_case_selector() {
+		createBuildPage.caseSelector = new Select(driver.findElement(By.id("Case")));
 		createBuildPage.caseSelector.selectByIndex(0);
 	}
 
@@ -105,6 +117,7 @@ public class CreateBuildStepImpl {
 
 	@When("A User click the PowerSupply Selector")
 	public void a_user_click_the_power_supply_selector() {
+		createBuildPage.psuSelector = new Select(driver.findElement(By.id("PSU")));
 		createBuildPage.psuSelector.selectByIndex(0);
 	}
 

@@ -30,6 +30,9 @@ public class CreateBuildRunner {
 		driver = new ChromeDriver();
 
 		loginPage = new LoginPage(driver);
+		userPage = new UserPage(driver);
+		createBuildPage = new CreateBuildPage(driver);
+		
 	}
 
 	@AfterAll
