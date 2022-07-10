@@ -46,16 +46,6 @@ public class CreateBuildStepImpl {
 	
 	}
 
-	
-	
-
-	
-		
-
-	
-	
-
-
 	@When("A User click the CPU Selector")
 	public void a_user_click_the_cpu_selector() {
 		createBuildPage.cpuSelector = new Select(driver.findElement(By.id("CPU")));

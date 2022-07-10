@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
-import org.eclipse.jetty.server.Authentication.User;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.sclass.models.User;
 import com.sclass.repositories.UserDAO;
 import com.sclass.services.UserService;
 
@@ -67,9 +68,9 @@ public class UserServiceTests {
 	public void createUserAccountwithValidInput() {
 		User mockUser = new User(1, "username", "pass");
 
-		when(userDaoMock.getUserByUsername(anyString()).thenReturn(null));
+		when(userDaoMock.getUserByUsername(anyString())).thenReturn(null);
 
-		when(userDaoMock.createUserAccount(anyString(), anyString()).thenReturn(mockUser));
+		when(userDaoMock.createUserAccount(anyString(), anyString())).thenReturn(mockUser);
 
 		User createdUser = userService.createUserAccount("username", "pass");
 
