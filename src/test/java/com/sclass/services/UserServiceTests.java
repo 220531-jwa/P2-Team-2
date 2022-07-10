@@ -1,6 +1,7 @@
 package com.sclass.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -78,7 +79,13 @@ public class UserServiceTests {
 
 	@Test
 	public void createUserAccountwithDuplicateUsernameShouldThrowException() {
-
+		User uAttempt = new User(1, "someUsername", "pass");
+		
+		when(userDaoMock.getUserByUsername(anyString())).thenReturn(uAttempt);
+		
+		Exception thrown = assertThrows(Exception.class, () -> { userService.createAccount("someUsername", "pass"); });
+		
+		assertEquals("Account with username " + uAttempt.getUsername() + " already exists.", thrown.getMessage());
 	}
 
 }
