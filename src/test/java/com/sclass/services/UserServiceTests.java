@@ -84,7 +84,7 @@ public class UserServiceTests {
 		
 		when(userDaoMock.getUserByUsername(anyString())).thenReturn(uAttempt);
 		
-		Exception thrown = assertThrows(Exception.class, () -> { userService.createAccount("someUsername", "pass"); });
+		Exception thrown = assertThrows(Exception.class, () -> { userService.createUserAccount("someUsername", "pass"); });
 		
 		assertEquals("Account with username " + uAttempt.getUsername() + " already exists.", thrown.getMessage());
 	}

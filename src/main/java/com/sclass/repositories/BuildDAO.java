@@ -1,6 +1,7 @@
 package com.sclass.repositories;
 
 import com.sclass.models.Build;
+import com.sclass.utils.ConnectionUtility;
 
 public class BuildDAO {
 
