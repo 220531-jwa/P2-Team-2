@@ -26,7 +26,7 @@ public class LoginPage {
 	@FindBy(id = "createAccountButton")
 	public WebElement createAccountButton;
 
-	@FindBy(id = "successAlert")
-	public WebElement successMessage;
+//	@FindBy(id = "successAlert")
+//	public WebElement successMessage;
 
 }
