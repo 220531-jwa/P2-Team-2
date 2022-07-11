@@ -1,7 +1,7 @@
 let baseUrl = "http://localhost:8081"; //might have to change port
 
 async function login(){
-
+    console.log("BUTTON CLICKED");
     let username = document.getElementById("usernameInput").value;
     let pass = document.getElementById("passwordInput").value;
 
