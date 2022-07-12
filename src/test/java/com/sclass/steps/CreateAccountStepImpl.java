@@ -42,10 +42,10 @@ public class CreateAccountStepImpl {
 //		assertTrue(driver.findElement(By.id("successAlert")).isDisplayed());
 //	}
 
-	@Then("The user gets redirected to their user page")
-	public void get_redirected_to_their_user_page() {
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Your Account Page"));
-		assertEquals("Your Account Page", driver.getTitle());
-	}
+//	@Then("The user gets redirected to their user page")
+//	public void get_redirected_to_their_user_page() {
+//		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Your Account Page"));
+//		assertEquals("Your Account Page", driver.getTitle());
+//	}
 
 }

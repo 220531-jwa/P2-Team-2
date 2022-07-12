@@ -25,10 +25,10 @@ Feature: PC Builder Create Account
   Scenario: A User can create a new account
     When A User types in a new "<username>" and "<password>" into the login form and clicks create account button
     #Then The User should receive a success message
-    Then The user gets redirected to their user page 
+    Then The User should be on their account page
 
     Examples: 
-     | one	 | pass	 |
-     | two	 | pass  |
-     | three | pass  |
-     | four  | pass  |
+     | username	 | password	 |
+     | Y	 | N  |
+     #| three | pass  |
+     #| four  | pass  |
