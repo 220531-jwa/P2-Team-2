@@ -29,13 +29,13 @@ public class UserFeaturesStepImpl {
 		loginPage.usernameInput.sendKeys(username);
 		loginPage.passwordInput.sendKeys(password);
 		loginPage.loginButton.click();
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Your User Page"));
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Your Home Page"));
 	}
 
-	@Given("A User is on their UserPage")
-	public void a_user_is_on_their_user_page() {
-		assertEquals(driver.getCurrentUrl(), "http://localhost:8080/userPage.html");
-	}
+//	@Given("A User is on their UserPage")
+//	public void a_user_is_on_their_user_page() {
+//		assertEquals(driver.getCurrentUrl(), "http://localhost:8080/userPage.html");
+//	}
 
 	@When("They click they click the CreateBuild button")
 	public void they_click_they_click_the_create_build_button() {
@@ -59,16 +59,16 @@ public class UserFeaturesStepImpl {
 		assertEquals("Edit a Build", driver.getTitle());
 	}
 
-	@When("They click they click the CompletedBuilds button")
-	public void they_click_they_click_the_completed_builds_button() {
-		userPage.completedBuilds.click();
-	}
-
-	@Then("They are redirected to the CompletedBuilds Page")
-	public void they_are_redirected_to_the_completed_builds_page() {
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Completed Builds"));
-		assertEquals("Completed Builds", driver.getTitle());
-	}
+//	@When("They click they click the CompletedBuilds button")
+//	public void they_click_they_click_the_completed_builds_button() {
+//		userPage.completedBuilds.click();
+//	}
+//
+//	@Then("They are redirected to the CompletedBuilds Page")
+//	public void they_are_redirected_to_the_completed_builds_page() {
+//		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Completed Builds"));
+//		assertEquals("Completed Builds", driver.getTitle());
+//	}
 
 	@When("They click they click the PartSearch button")
 	public void they_click_they_click_the_part_search_button() {

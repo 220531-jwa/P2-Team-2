@@ -31,9 +31,9 @@ Feature: User Account Features
     When They click they click the EditBuild button
     Then They are redirected to the EditBuild Page
     
-	Scenario: View Created Build(s)
-    When They click they click the CompletedBuilds button
-    Then They are redirected to the CompletedBuilds Page
+#	Scenario: View Created Build(s)
+    #When They click they click the CompletedBuilds button
+    #Then They are redirected to the CompletedBuilds Page
     
 	Scenario: Search for Parts
     When They click they click the PartSearch button

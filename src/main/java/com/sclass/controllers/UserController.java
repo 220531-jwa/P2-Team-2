@@ -49,5 +49,9 @@ public class UserController {
 		}
 
 	}
+	
+	public void getBuilds(Context ctx) {
+		int id = Integer.parseInt(ctx.pathParam("id"));
+	}
 
 }//file
