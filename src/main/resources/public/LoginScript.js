@@ -76,6 +76,7 @@ async function createAccount(){
             if (res.status ===200){
                 //login logic here
                 console.log("IT WORKED");
+                window.location.assign("home.html");
                 
             }
             else{

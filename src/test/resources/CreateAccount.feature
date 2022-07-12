@@ -28,7 +28,7 @@ Feature: PC Builder Create Account
     Then The user gets redirected to their user page 
 
     Examples: 
-      |kpro	| pass	|
-      |elle	|	pass	|
-      | mfar|pass|
-      |jmor|pass|
+     | one	 | pass	 |
+     | two	 | pass  |
+     | three | pass  |
+     | four  | pass  |
