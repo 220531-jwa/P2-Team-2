@@ -22,7 +22,7 @@ public class LoginStepImpl {
 
 	@Given("A User is on the Home page")
 	public void a_user_is_on_the_home_page() {
-		driver.get("http://localhost:8080/home.html");
+		driver.get("http://localhost:8081/loginPage.html");
 	}
 
 	@When("A User enters their {string} and {string} in the login form and click the login button")

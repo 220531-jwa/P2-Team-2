@@ -20,13 +20,15 @@
 Feature: PC Builder Create Account
 
  Background: 
-	Given a User is on the Home page
+	Given A User is on the Home page
 
   Scenario: A User can create a new account
     When A User types in a new "<username>" and "<password>" into the login form and clicks create account button
-    Then The User should receive a success message
-    And Get redirected to their user page 
+    #Then The User should receive a success message
+    Then The user gets redirected to their user page 
 
     Examples: 
-      |username	| password	|
-      |anything	|	pass123		|
+      |kpro	| pass	|
+      |elle	|	pass	|
+      | mfar|pass|
+      |jmor|pass|
