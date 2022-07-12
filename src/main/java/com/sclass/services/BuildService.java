@@ -15,7 +15,6 @@ public class BuildService {
 	
 	public Build createBuild(int userId, String name, int moboId, int cpuId, int ramId, int storageId, int psuId, 
 			int caseId, boolean hasFourRam) throws Exception {
-		// Will need more logic here
 		// Get all parts from DB in build
 		// Check if mobo and cpu have same manufacturer
 		// Check if psu wattage is greater than the sum of the other parts
