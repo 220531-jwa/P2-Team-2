@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.sclass.pages.CreateBuildPage;
 import com.sclass.pages.LoginPage;
-import com.sclass.pages.UserPage;
+import com.sclass.pages.HomePage;
 import com.sclass.runners.CreateBuildRunner;
 import com.sclass.runners.LoginRunner;
 
@@ -22,7 +22,7 @@ public class CreateBuildStepImpl {
 
 	private WebDriver driver = CreateBuildRunner.driver;
 	private LoginPage loginPage = CreateBuildRunner.loginPage;
-	private UserPage userPage = CreateBuildRunner.userPage;
+	private HomePage userPage = CreateBuildRunner.userPage;
 	private CreateBuildPage createBuildPage = CreateBuildRunner.createBuildPage;
 
 	
@@ -49,7 +49,7 @@ public class CreateBuildStepImpl {
 	@When("A User click the CPU Selector")
 	public void a_user_click_the_cpu_selector() {
 		createBuildPage.cpuSelector = new Select(driver.findElement(By.id("CPU")));
-		createBuildPage.cpuSelector.selectByIndex(0);
+		createBuildPage.cpuSelector.selectByIndex(1);
 	}
 
 	@Then("The User should be able to pick a CPU")
@@ -61,7 +61,7 @@ public class CreateBuildStepImpl {
 	@When("A User click the Motherboard Selector")
 	public void a_user_click_the_motherboard_selector() {
 		createBuildPage.motherboardSelector = new Select(driver.findElement(By.id("Motherboard")));
-		createBuildPage.motherboardSelector.selectByIndex(0);
+		createBuildPage.motherboardSelector.selectByIndex(1);
 	}
 
 	@Then("The User should be able to pick a motherboard")
@@ -73,7 +73,7 @@ public class CreateBuildStepImpl {
 	@When("A User click the RAM Selector")
 	public void a_user_click_the_ram_selector() {
 		createBuildPage.ramSelector = new Select(driver.findElement(By.id("RAM")));
-		createBuildPage.ramSelector.selectByIndex(0);
+		createBuildPage.ramSelector.selectByIndex(1);
 	}
 
 	@Then("The User should be able to pick a RAM")
@@ -86,7 +86,7 @@ public class CreateBuildStepImpl {
 	@When("A User click the Storage Selector")
 	public void a_user_click_the_storage_selector() {
 		createBuildPage.storageSelector = new Select(driver.findElement(By.id("Storage")));
-		createBuildPage.storageSelector.selectByIndex(0);
+		createBuildPage.storageSelector.selectByIndex(1);
 	}
 
 	@Then("The User should be able to pick a Storage")
@@ -97,7 +97,7 @@ public class CreateBuildStepImpl {
 	@When("A User click the Case Selector")
 	public void a_user_click_the_case_selector() {
 		createBuildPage.caseSelector = new Select(driver.findElement(By.id("Case")));
-		createBuildPage.caseSelector.selectByIndex(0);
+		createBuildPage.caseSelector.selectByIndex(1);
 	}
 
 	@Then("The User should be able to pick a Case")
@@ -108,7 +108,7 @@ public class CreateBuildStepImpl {
 	@When("A User click the PowerSupply Selector")
 	public void a_user_click_the_power_supply_selector() {
 		createBuildPage.psuSelector = new Select(driver.findElement(By.id("PSU")));
-		createBuildPage.psuSelector.selectByIndex(0);
+		createBuildPage.psuSelector.selectByIndex(1);
 	}
 
 	@Then("The User should be able to pick a PowerSupply")

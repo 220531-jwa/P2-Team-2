@@ -6,7 +6,7 @@ import org.junit.platform.suite.api.Suite;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import com.sclass.pages.UserPage;
+import com.sclass.pages.HomePage;
 
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
@@ -15,7 +15,7 @@ import io.cucumber.java.BeforeAll;
 public class UserFeaturesRunner {
 
 	public static WebDriver driver;
-	public static UserPage userPage;
+	public static HomePage userPage;
 
 	@BeforeAll
 	public static void setup() {
@@ -24,7 +24,7 @@ public class UserFeaturesRunner {
 		System.setProperty("webdriver.chrome.driver", chrome.getAbsolutePath());
 		driver = new ChromeDriver();
 
-		userPage = new UserPage(driver);
+		userPage = new HomePage(driver);
 	}
 
 	@AfterAll

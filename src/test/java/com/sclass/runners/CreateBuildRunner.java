@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.sclass.pages.CreateBuildPage;
 import com.sclass.pages.LoginPage;
-import com.sclass.pages.UserPage;
+import com.sclass.pages.HomePage;
 
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
@@ -18,7 +18,7 @@ public class CreateBuildRunner {
 
 	public static WebDriver driver;
 	public static LoginPage loginPage;
-	public static UserPage userPage;
+	public static HomePage userPage;
 	public static CreateBuildPage createBuildPage;
 
 
@@ -30,7 +30,7 @@ public class CreateBuildRunner {
 		driver = new ChromeDriver();
 
 		loginPage = new LoginPage(driver);
-		userPage = new UserPage(driver);
+		userPage = new HomePage(driver);
 		createBuildPage = new CreateBuildPage(driver);
 		
 	}
