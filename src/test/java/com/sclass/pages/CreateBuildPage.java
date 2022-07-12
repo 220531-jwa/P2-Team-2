@@ -39,6 +39,9 @@ public class CreateBuildPage {
 	
 	public Select psuSelector;
 	
+	@FindBy(id = "submit")
+	public WebElement submitButton;
+	
 //	@FindBy(id="Motherboard")
 //	public WebElement motherboardElement;
 //	public Select getMotherboardSelector() {

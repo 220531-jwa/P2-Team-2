@@ -1,7 +1,7 @@
 let baseUrl = "http://localhost:8081"; //might have to change port
 
 async function login(){
-    console.log("BUTTON CLICKED");
+    // console.log("BUTTON CLICKED");
     let username = document.getElementById("usernameInput").value;
     let pass = document.getElementById("passwordInput").value;
 
@@ -12,7 +12,7 @@ async function login(){
     }
 
     let userJson = JSON.stringify(user);
-    console.log(userJson);
+    // console.log(userJson);
 
     let res = await fetch(
         `${baseUrl}/login`,
@@ -24,11 +24,13 @@ async function login(){
         
         let resJson = await res.json()
         .then((resp)=>{
-            console.log(resp);
+            // console.log(resp);
             if (res.status ===200){
                 //login logic here
-                console.log("IT WORKED");
+                // console.log("IT WORKED");
                 window.location.assign("home.html");
+                sessionStorage.setItem('inUser', JSON.stringify(resp));
+                console.log(JSON.parse(sessionStorage.getItem('inUser')));
             }
             else{
                 alert(resp.message); 
@@ -36,7 +38,7 @@ async function login(){
             }
         })
    
-        // sessionStorage.setItem('inUser', JSON.stringify(resp));
+         
                 
         
 
@@ -60,7 +62,7 @@ async function createAccount(){
     }
 
     let userJson = JSON.stringify(user);
-    console.log(userJson);
+    // console.log(userJson);
 
     let res = await fetch(
         `${baseUrl}/createAccount`,
@@ -72,11 +74,12 @@ async function createAccount(){
         
         let resJson = await res.json()
         .then((resp)=>{
-            console.log(resp);
+            // console.log(resp);
             if (res.status ===200){
                 //login logic here
-                console.log("IT WORKED");
+                // console.log("IT WORKED");
                 window.location.assign("home.html");
+                sessionStorage.setItem('inUser', JSON.stringify(resp));
                 
             }
             else{
@@ -84,11 +87,7 @@ async function createAccount(){
   
             }
         })
-        // currentUser = resp.name;
-        // sessionStorage.setItem('inUser', JSON.stringify(resp));
-                
-        // window.location.assign("Employeehomepage.html");
-        // console.log(currentUser);
+       
         
         .catch((error)=>{console.log(error); 
             

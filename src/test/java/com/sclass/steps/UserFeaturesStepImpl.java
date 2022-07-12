@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.sclass.pages.LoginPage;
-import com.sclass.pages.UserPage;
+import com.sclass.pages.HomePage;
 import com.sclass.runners.LoginRunner;
 import com.sclass.runners.UserFeaturesRunner;
 
@@ -20,7 +20,7 @@ import io.cucumber.java.en.When;
 public class UserFeaturesStepImpl {
 
 	private WebDriver driver = UserFeaturesRunner.driver;
-	private UserPage userPage = UserFeaturesRunner.userPage;
+	private HomePage userPage = UserFeaturesRunner.userPage;
 	private LoginPage loginPage = LoginRunner.loginPage;
 
 	@Given("A User is logged in")
