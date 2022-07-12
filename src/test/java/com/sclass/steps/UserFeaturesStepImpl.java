@@ -25,7 +25,7 @@ public class UserFeaturesStepImpl {
 
 	@Given("A User is logged in")
 	public void a_user_is_logged_in(String username, String password) {
-		driver.get("http://localhost:8080/loginPage.html");
+		driver.get("http://localhost:8081/loginPage.html");
 		loginPage.usernameInput.sendKeys(username);
 		loginPage.passwordInput.sendKeys(password);
 		loginPage.loginButton.click();

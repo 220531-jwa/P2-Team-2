@@ -27,15 +27,15 @@ public class CreateBuildStepImpl {
 
 	
 	
-	@Given("A User is logged in")
-	public void a_user_is_logged_in() {
-		driver.get("http://localhost:8080/home.html");
-		loginPage.usernameInput.sendKeys("username"); //TODO: change these values
-		loginPage.passwordInput.sendKeys("password");
-		loginPage.loginButton.click();
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Your Home Page"));
-		//		assertEquals("Your Home Page", driver.getTitle());
-	}
+//	@Given("A User is logged in")
+//	public void a_user_is_logged_in() {
+//		driver.get("http://localhost:8080/home.html");
+//		loginPage.usernameInput.sendKeys("username"); //TODO: change these values
+//		loginPage.passwordInput.sendKeys("password");
+//		loginPage.loginButton.click();
+//		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Your Home Page"));
+//		//		assertEquals("Your Home Page", driver.getTitle());
+//	}
 
 	@Given("on the Create Build Page")
 	public void on_the_create_build_page() {

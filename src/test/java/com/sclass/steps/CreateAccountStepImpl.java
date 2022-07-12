@@ -36,16 +36,16 @@ public class CreateAccountStepImpl {
 		loginPage.createAccountButton.click();
 	}
 
-	@Then("The User should receive a success alert")
-	public void the_user_should_receive_a_success_alert() {
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.alertIsPresent());
-		assertTrue(driver.findElement(By.id("successAlert")).isDisplayed());
-	}
+//	@Then("The User should receive a success alert")
+//	public void the_user_should_receive_a_success_alert() {
+//		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.alertIsPresent());
+//		assertTrue(driver.findElement(By.id("successAlert")).isDisplayed());
+//	}
 
-	@Then("Get redirected to their user page")
-	public void get_redirected_to_their_user_page() {
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Your Account Page"));
-		assertEquals("Your Account Page", driver.getTitle());
-	}
+//	@Then("The user gets redirected to their user page")
+//	public void get_redirected_to_their_user_page() {
+//		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Your Account Page"));
+//		assertEquals("Your Account Page", driver.getTitle());
+//	}
 
 }
