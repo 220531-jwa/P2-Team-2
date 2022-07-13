@@ -30,7 +30,8 @@ public class PartDAO {
 			if (rs.next()) {
 				return new Part(rs.getInt("part_id"), rs.getString("part_name"),
 						rs.getObject("part_type", partType.class), rs.getInt("part_wattage"),
-						rs.getDouble("part_price"), rs.getObject("manufacturer", manufacturer.class));
+						rs.getDouble("part_price"), rs.getObject("manufacturer", manufacturer.class),
+						rs.getInt("ram_slots"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -57,8 +58,9 @@ public class PartDAO {
 				int partWattage = rs.getInt("part_wattage");
 				double partPrice = rs.getDouble("part_price");
 				manufacturer manufacturer = rs.getObject("manufacturer", manufacturer.class);
+				int ramSlots = rs.getInt("ram_slots");
 
-				Part part = new Part(partId, partName, partType, partWattage, partPrice, manufacturer);
+				Part part = new Part(partId, partName, partType, partWattage, partPrice, manufacturer, ramSlots);
 
 				parts.add(part);
 
@@ -92,8 +94,9 @@ public class PartDAO {
 				int partWattage = rs.getInt("part_wattage");
 				double partPrice = rs.getDouble("part_price");
 				manufacturer manufacturer = rs.getObject("manufacturer", manufacturer.class);
+				int ramSlots = rs.getInt("ram_slots");
 
-				Part part = new Part(partId, partName, partType, partWattage, partPrice, manufacturer);
+				Part part = new Part(partId, partName, partType, partWattage, partPrice, manufacturer, ramSlots);
 
 				parts.add(part);
 

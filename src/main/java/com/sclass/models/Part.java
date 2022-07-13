@@ -16,12 +16,13 @@ public class Part {
 	private int partWattage;
 	private double partPrice;
 	private manufacturer manufacturer;
+	private int ramSlots;
 
 	public Part() {
 	}
 
 	public Part(int partId, String partName, Part.partType partType, int partWattage, double partPrice,
-			Part.manufacturer manufacturer) {
+			Part.manufacturer manufacturer, int ramSlots) {
 		super();
 		this.partId = partId;
 		this.partName = partName;
@@ -29,6 +30,7 @@ public class Part {
 		this.partWattage = partWattage;
 		this.partPrice = partPrice;
 		this.manufacturer = manufacturer;
+		this.ramSlots = ramSlots;
 	}
 
 	public int getPartId() {
@@ -79,10 +81,18 @@ public class Part {
 		this.manufacturer = manufacturer;
 	}
 
+	public int getRamSlots() {
+		return ramSlots;
+	}
+
+	public void setRamSlots(int ramSlots) {
+		this.ramSlots = ramSlots;
+	}
+
 	@Override
 	public String toString() {
 		return "Part [partId=" + partId + ", partName=" + partName + ", partType=" + partType + ", partWattage="
-				+ partWattage + ", partPrice=" + partPrice + ", manufacturer=" + manufacturer + "]";
+				+ partWattage + ", partPrice=" + partPrice + ", manufacturer=" + manufacturer + ", ramSlots=" + ramSlots
+				+ "]";
 	}
-
 }
