@@ -17,6 +17,7 @@ public class BuildService {
 			int caseId, boolean hasFourRam) throws Exception {
 		// Get all parts from DB in build
 		// Check if mobo and cpu have same manufacturer
+		// Check if mobo has enough capacity for ram (maybe do on frontend?)
 		// Check if psu wattage is greater than the sum of the other parts
 		
 		return buildDao.createBuild(userId, name, moboId, cpuId, ramId, storageId, psuId, caseId, hasFourRam);
