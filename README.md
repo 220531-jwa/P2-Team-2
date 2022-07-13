@@ -1,4 +1,4 @@
-# P2-Team-2 PC Builder App.
+# P2-Team-2 PC Builder App
 
 ## Description
 > A PC building application that allows someone to put together compatible components. This helps those that may not know which parts are compatible with each other, or allows them to find parts within their budget. A place to showcase your finished builds exists to make all of your friends jealous.
