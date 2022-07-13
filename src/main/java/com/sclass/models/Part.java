@@ -3,11 +3,57 @@ package com.sclass.models;
 public class Part {
 
 	public enum partType {
-		MOBO, CPU, RAM, STORAGE, PSU, CASE
+		MOBO {
+			@Override
+			public String toString() {
+				return "Motherboard";
+			}
+		},
+		CPU {
+			@Override
+			public String toString() {
+				return "CPU";
+			}
+		},
+		RAM {
+			@Override
+			public String toString() {
+				return "RAM";
+			}
+		},
+		STORAGE {
+			@Override
+			public String toString() {
+				return "Storage";
+			}
+		},
+		PSU {
+			@Override
+			public String toString() {
+				return "Power Supply Unit";
+			}
+		},
+		CASE {
+			@Override
+			public String toString() {
+				return "Case";
+			}
+		}
 	}
 
 	public enum manufacturer {
-		AMD, INTEL
+		AMD {
+			@Override
+			public String toString() {
+				return "AMD";
+			}
+		},
+		INTEL {
+			@Override
+			public String toString() {
+				return "Intel";
+			}
+		}
 	}
 
 	private int partId;

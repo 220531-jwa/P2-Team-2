@@ -13,32 +13,36 @@ public class PartService {
 		this.partDao = partDao;
 	}
 
-	public Part getPartById(int partId) {
+	public Part getPartById(int partId) throws Exception {
 		Part part = partDao.getPartById(partId);
+		if (part == null) {
+			throw new Exception("Part with ID: " + partId + " doesn't exist.");
+		}
 		return part;
 	}
 
-	public List<Part> getPartsByType(Part.partType partType) {
+	public List<Part> getPartsByType(Part.partType partType) throws Exception {
 		List<Part> parts = partDao.getPartsByType(partType);
-//		return parts;
-
-		List<Part> test = partDao.getAllParts();
-		for (Part part : test) {
-			if (part.getPartType() != partType) {
-				test.remove(part);
-			}
+		if (parts.isEmpty()) {
+			throw new Exception("No parts of type: \"" + partType.toString() + "\" are available.");
 		}
-
-		return test;
-	}
-
-	public List<Part> getAllParts() {
-		List<Part> parts = partDao.getAllParts();
 		return parts;
 	}
 
-	public List<Part> getAllPartsWithParams(double priceFloor, double priceCeiling) {
+	public List<Part> getAllParts() throws Exception {
+		List<Part> parts = partDao.getAllParts();
+		if (parts.isEmpty()) {
+			throw new Exception("We are plum out of parts. Check back later!");
+		}
+		return parts;
+	}
+
+	public List<Part> getAllPartsWithParams(double priceFloor, double priceCeiling) throws Exception {
 		List<Part> parts = partDao.getAllPartsWithParams(priceFloor, priceCeiling);
+		if (parts.isEmpty()) {
+			throw new Exception("No parts available between: $" + priceFloor + " and $" + priceCeiling);
+		}
+
 		return parts;
 	}
 
