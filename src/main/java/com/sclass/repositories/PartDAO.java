@@ -39,7 +39,7 @@ public class PartDAO {
 		return null;
 	}
 
-	public List<Part> getPartByType(Part.partType partType) {
+	public List<Part> getPartsByType(Part.partType partType) {
 
 		List<Part> parts = new ArrayList<>();
 
@@ -74,16 +74,51 @@ public class PartDAO {
 		return null;
 	}
 
-	public List<Part> getPartByPrice(double priceCeiling) {
+	public List<Part> getAllParts() {
 
 		List<Part> parts = new ArrayList<>();
 
-		String sql = "select * from parts where part_price <= ?";
+		String sql = "select * from parts";
+
+		try (Connection conn = cu.getConnection()) {
+
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				int partId = rs.getInt("part_id");
+				String partName = rs.getString("part_name");
+				partType partType = rs.getObject("part_type", partType.class);
+				int partWattage = rs.getInt("part_wattage");
+				double partPrice = rs.getDouble("part_price");
+				manufacturer manufacturer = rs.getObject("manufacturer", manufacturer.class);
+				int ramSlots = rs.getInt("ram_slots");
+
+				Part part = new Part(partId, partName, partType, partWattage, partPrice, manufacturer, ramSlots);
+
+				parts.add(part);
+
+			}
+			return parts;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	public List<Part> getAllPartsWithParams(double priceFloor, double priceCeiling) {
+
+		List<Part> parts = new ArrayList<>();
+
+		String sql = "select * from parts where part_price <= ? and part_price >= ?";
 
 		try (Connection conn = cu.getConnection()) {
 
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setObject(1, priceCeiling);
+			ps.setObject(2, priceFloor);
 
 			ResultSet rs = ps.executeQuery();
 
