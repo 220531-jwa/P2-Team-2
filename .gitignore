@@ -1,5 +1,5 @@
 # ignore sensitive credentials
-# connection.properties
+connection.properties
 
 # Compiled class file
 *.class
