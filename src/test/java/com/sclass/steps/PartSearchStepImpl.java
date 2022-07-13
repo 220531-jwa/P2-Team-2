@@ -32,10 +32,10 @@ public class PartSearchStepImpl {
 		driver.get("http://localhost:8081/partSearch.html");
 	}
 
-	@When("A Visitor selects {string} from the selection dropdown")
-	public void a_visitor_selects_from_the_selection_dropdown(String partType) {
-		partSearchPage.partTypeSelector = new Select(driver.findElement(By.id(partType)));
-	}
+//	@When("A Visitor selects {string} from the selection dropdown")
+//	public void a_visitor_selects_from_the_selection_dropdown(String partType) {
+//		partSearchPage.partTypeSelector = new Select(driver.findElement(By.id(partType)));
+//	}
 
 	@When("A Visitor enters a bottom-limit cash value into {string}")
 	public void a_visitor_enters_a_bottom_limit_cash_value_into(String priceFloor) {

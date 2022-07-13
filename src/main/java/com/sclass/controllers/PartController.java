@@ -19,9 +19,9 @@ public class PartController {
 		String priceFloor = ctx.queryParam("priceFloor");
 		String priceCeiling = ctx.queryParam("priceCeiling");
 		List<Part> parts;
-
+		System.out.println("floor:"+priceFloor+" ceiling:"+priceCeiling);
 		try {
-			if (priceFloor == null || priceCeiling == null) {
+			if (priceFloor == null && priceCeiling == null) { //should this be and? a 0-check?
 				parts = partService.getAllParts();
 			} else {
 				parts = partService.getAllPartsWithParams(Double.parseDouble(priceFloor),

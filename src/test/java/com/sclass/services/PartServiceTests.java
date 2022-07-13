@@ -6,7 +6,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
-import org.junit.jupiter.api.BeforeAll;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.platform.suite.api.Suite;
@@ -18,24 +19,25 @@ import com.sclass.models.Part;
 import com.sclass.models.Part.manufacturer;
 import com.sclass.models.Part.partType;
 import com.sclass.repositories.PartDAO;
+import com.sclass.services.PartService;
 
 @Suite
 @ExtendWith(MockitoExtension.class)
 class PartServiceTests {
 
 	@InjectMocks
-	static PartService partService;
+	PartService partService;
 
 	@Mock
-	static PartDAO partDaoMock;
+	PartDAO partDaoMock;
 
-	@BeforeAll
-	static void setUpBeforeClass() {
+	@BeforeEach
+	public void setUpBeforeClass() {
 		partService = new PartService(partDaoMock);
 	}
 
 	@Test
-	void GetPartWithValidId() {
+	public void GetPartWithValidId() {
 		Part part = new Part(1, "4-Slot AMD Motherboard", partType.MOBO, 25, 100.00, manufacturer.AMD, 4);
 
 		when(partDaoMock.getPartById(anyInt())).thenReturn(part);
@@ -48,28 +50,28 @@ class PartServiceTests {
 	}
 
 	@Test
-	void GetPartWithInvalidIdShouldThrowException() {
+	public void GetPartWithInvalidIdShouldThrowException() {
 		int invalidPartId = -1;
 		Exception thrown = assertThrows(Exception.class, () -> {
 			partService.getPartById(invalidPartId);
 		});
 
-		assertEquals("Part with id " + invalidPartId + " doesn't exist.", thrown.getMessage());
+		assertEquals("Part with ID: " + invalidPartId + " doesn't exist.", thrown.getMessage());
 
 	}
 
 	@Test
-	void testGetPartsByType() {
+	public void testGetPartsByType() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testGetAllParts() {
+	public void testGetAllParts() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testGetAllPartsWithParams() {
+	public void testGetAllPartsWithParams() {
 		fail("Not yet implemented");
 	}
 
