@@ -36,9 +36,10 @@ public class AppDriver {
 			});
 			path("users/",()->{
 				path("{id}",()->{
-					path("",()->{
-						get(uc::getBuilds);
+					path("/builds",()->{
+						get(bc::getAllBuildsForUser);
 					});
+//					path ("",()->{});
 				});
 			});
 		});

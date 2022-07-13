@@ -1,5 +1,8 @@
 package com.sclass.services;
 
+import java.util.List;
+
+import com.sclass.models.Build;
 import com.sclass.models.User;
 import com.sclass.repositories.UserDAO;
 
@@ -34,5 +37,12 @@ public class UserService {
 			throw new Exception("A user with this name already exists!");
 		}
 		
+	}
+
+	public List<Build> getBuildsByUser(int id) {
+		
+		
+		
+		return null;
 	}
 }

@@ -1,5 +1,8 @@
 package com.sclass.controllers;
 
+import java.util.List;
+
+import com.sclass.models.Build;
 import com.sclass.models.User;
 import com.sclass.services.UserService;
 
@@ -50,8 +53,6 @@ public class UserController {
 
 	}
 	
-	public void getBuilds(Context ctx) {
-		int id = Integer.parseInt(ctx.pathParam("id"));
-	}
+	
 
 }//file
