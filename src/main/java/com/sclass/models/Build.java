@@ -3,6 +3,7 @@ package com.sclass.models;
 public class Build {
 
 	private int buildId;
+	private int userId;
 	private String buildName;
 	private int moboId;
 	private int cpuId;
@@ -11,12 +12,11 @@ public class Build {
 	private int psuId;
 	private int caseId;
 	private boolean hasFourRAM;
-	private int userId;
 	
 	public Build() {}
 	
-	public Build(int buildId, String buildName, int moboId, int cpuId, int ramId, int storageId, int psuId, int caseId,
-			boolean hasFourRAM, int userId) {
+	public Build(int buildId, int userId, String buildName, int moboId, int cpuId, int ramId, int storageId, int psuId, 
+			int caseId, boolean hasFourRAM) {
 		super();
 		this.buildId = buildId;
 		this.buildName = buildName;
