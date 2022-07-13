@@ -20,6 +20,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.sclass.models.Build;
 import com.sclass.repositories.BuildDAO;
+import com.sclass.repositories.PartDAO;
 
 @Suite
 @ExtendWith(MockitoExtension.class)
@@ -31,9 +32,12 @@ public class BuildServiceTests {
 	@Mock
 	BuildDAO buildDaoMock;
 	
+	@Mock
+	PartDAO partDaoMock;
+	
 	@BeforeEach
 	public void setupEach() {
-		buildService = new BuildService(buildDaoMock);
+		buildService = new BuildService(buildDaoMock, partDaoMock);
 	}
 	
 	@Test

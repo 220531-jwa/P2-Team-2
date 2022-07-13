@@ -33,11 +33,30 @@ function populateDropdowns(partsList) {
 
     for(const part in partsList) {
         let newOption = document.createElement('option');
-        
-        // Need if statements to put parts in correct dropdown
-        // newOption.setAttribute("value", part.part_id);
-        // newOption.innerText = entry.part_name;
-        // selector.appendChild(newOption);
+        let partName = part.part_name;
+        newOption.setAttribute("value", part.part_id);
+        newOption.innerText = entry.part_name;
+
+        switch(partName) {
+            case("mobo"):
+                moboSelector.appendChild(newOption);
+                break;
+            case("cpu"):
+                cpuSelector.appendChild(newOption);
+                break;
+            case("ram"):
+                ramSelector.appendChild(newOption);
+                break;
+            case("storage"):
+                storageSelector.appendChild(newOption);
+                break;
+            case("psu"):
+                psuSelector.appendChild(newOption);
+                break;
+            case("case"):
+                caseSelector.appendChild(newOption);
+                break;
+        }
     }
 }
 
