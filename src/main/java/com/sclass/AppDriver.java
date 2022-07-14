@@ -48,6 +48,9 @@ public class AppDriver {
 			});
 			path("/search",()->{
 				get(pc::getAllParts);
+				path("/{partId}",()->{
+					get(pc::getPartById);
+				});
 			});
 		});
 

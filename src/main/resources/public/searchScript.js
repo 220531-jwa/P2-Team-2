@@ -44,14 +44,37 @@ async function searchForParts(){
         });
         let resJson = await res.json()
         .then((resp)=>{
-
+        if (res.status ===404){
+            alert(resp.message);
+        }
         console.log(resp);
+
+        let table = document.getElementById("resultTable");
+
+        for (const entry of resp){
+            var row = table.insertRow(-1);
+
+            var cell0 = row.insertCell(0);
+            var cell1 = row.insertCell(1);
+            var cell2 = row.insertCell(2);
+            var cell3 = row.insertCell(3);
+            var cell4 = row.insertCell(4);
+            var cell5 = row.insertCell(5);
+
+            cell0.innerText = entry.partName;
+            cell1.innerText = entry.partId;
+            cell2.innerText = entry.partPrice;
+            cell3.innerText = entry.partWattage;
+            cell4.innerText = entry.manufacturer;
+            cell5.innerText = entry.ramSlots;
+
+        }
 
 
 
         })
 
         .catch((error)=>{console.log(error);
-        
+        console.log(error);
         });
 }

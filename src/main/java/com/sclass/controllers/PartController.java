@@ -30,14 +30,22 @@ public class PartController {
 			ctx.status(200);
 			ctx.json(parts);
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			ctx.json(e);
 			ctx.status(404);
-			ctx.result("Parts not found");
+//			ctx.result("Parts not found");
 		}
 	}
 
-	public void GetPartById(Context ctx) {
+	public void getPartById(Context ctx) {
 		int partId = Integer.parseInt(ctx.pathParam("partId"));
+		try {
+		ctx.json(partService.getPartById(partId));
+		ctx.status(200);
+		} catch (Exception e) {
+			ctx.json(e);
+			ctx.status(404);
+		}
 	}
 
 }

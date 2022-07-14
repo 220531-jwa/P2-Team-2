@@ -18,7 +18,7 @@ public class PartDAO {
 
 	public Part getPartById(int partId) {
 
-		String sql = "select * from parts where part_id = ?";
+		String sql = "select * from pcbuilder.parts where part_id = ?";
 
 		try (Connection conn = cu.getConnection()) {
 
