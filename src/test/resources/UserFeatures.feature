@@ -27,9 +27,9 @@ Feature: User Account Features
     When They click they click the CreateBuild button
     Then They are redirected to the CreateBuild Page
     
-	Scenario: Edit a Build
-    When They click they click the EditBuild button
-    Then They are redirected to the EditBuild Page
+#	Scenario: Edit a Build
+    #When They click they click the EditBuild button
+    #Then They are redirected to the EditBuild Page
     
 #	Scenario: View Created Build(s)
     #When They click they click the CompletedBuilds button

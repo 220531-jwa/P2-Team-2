@@ -44,19 +44,19 @@ public class UserFeaturesStepImpl {
 	@Then("They are redirected to the CreateBuild Page")
 	public void they_are_redirected_to_the_create_build_page() {
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Create a Build"));
-		assertEquals("Create a Build", driver.getTitle());
+		assertEquals("Create New Build", driver.getTitle());
 	}
 
-	@When("They click they click the EditBuild button")
-	public void they_click_they_click_the_edit_build_button() {
-		userPage.editBuild.click();
-	}
-
-	@Then("They are redirected to the EditBuild Page")
-	public void they_are_redirected_to_the_edit_build_page() {
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Edit a Build"));
-		assertEquals("Edit a Build", driver.getTitle());
-	}
+//	@When("They click they click the EditBuild button")
+//	public void they_click_they_click_the_edit_build_button() {
+//		userPage.editBuild.click();
+//	}
+//
+//	@Then("They are redirected to the EditBuild Page")
+//	public void they_are_redirected_to_the_edit_build_page() {
+//		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Edit a Build"));
+//		assertEquals("Edit a Build", driver.getTitle());
+//	}
 
 //	@When("They click they click the CompletedBuilds button")
 //	public void they_click_they_click_the_completed_builds_button() {

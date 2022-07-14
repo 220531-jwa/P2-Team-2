@@ -41,7 +41,8 @@ public class CreateBuildStepImpl {
 	public void on_the_create_build_page() {
 		userPage.createBuild.click();
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Create a Build"));
-		//		assertEquals("Create a Build", driver.getTitle());
+				assertEquals("Create a Build", driver.getTitle());
+		System.out.println("clicky");
 	
 	}
 
