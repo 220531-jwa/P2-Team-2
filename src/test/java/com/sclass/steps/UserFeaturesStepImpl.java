@@ -8,9 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.sclass.pages.LoginPage;
 import com.sclass.pages.HomePage;
-import com.sclass.runners.LoginRunner;
+import com.sclass.pages.LoginPage;
 import com.sclass.runners.UserFeaturesRunner;
 
 import io.cucumber.java.en.Given;
@@ -21,13 +20,13 @@ public class UserFeaturesStepImpl {
 
 	private WebDriver driver = UserFeaturesRunner.driver;
 	private HomePage userPage = UserFeaturesRunner.userPage;
-	private LoginPage loginPage = LoginRunner.loginPage;
+	private LoginPage loginPage = UserFeaturesRunner.loginPage;
 
 	@Given("A User is logged in")
-	public void a_user_is_logged_in(String username, String password) {
+	public void a_user_is_logged_in() {
 		driver.get("http://localhost:8081/loginPage.html");
-		loginPage.usernameInput.sendKeys(username);
-		loginPage.passwordInput.sendKeys(password);
+		loginPage.usernameInput.sendKeys("kpro");
+		loginPage.passwordInput.sendKeys("pass");
 		loginPage.loginButton.click();
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Your Home Page"));
 	}
@@ -77,7 +76,7 @@ public class UserFeaturesStepImpl {
 
 	@Then("They are redirected to the PartSearch Page")
 	public void they_are_redirected_to_the_part_search_page() {
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Search for Parts"));
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Part Search Page"));
 		assertEquals("Search for Parts", driver.getTitle());
 	}
 
