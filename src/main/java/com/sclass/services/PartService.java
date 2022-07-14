@@ -39,7 +39,8 @@ public class PartService {
 
 	public List<Part> getAllPartsWithParams(double priceFloor, double priceCeiling) throws Exception {
 		List<Part> parts = partDao.getAllPartsWithParams(priceFloor, priceCeiling);
-		if (parts.isEmpty()) {
+		if (parts == null || parts.isEmpty()) {
+			System.out.println(("No parts available between: $" + priceFloor + " and $" + priceCeiling));
 			throw new Exception("No parts available between: $" + priceFloor + " and $" + priceCeiling);
 		}
 

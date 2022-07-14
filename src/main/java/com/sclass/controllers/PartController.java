@@ -21,7 +21,7 @@ public class PartController {
 		List<Part> parts;
 		System.out.println("floor:"+priceFloor+" ceiling:"+priceCeiling);
 		try {
-			if (priceFloor == null && priceCeiling == null) { //should this be and? a 0-check?
+			if (priceFloor == null || priceCeiling == null) { //should this be and? a 0-check?
 				parts = partService.getAllParts();
 			} else {
 				parts = partService.getAllPartsWithParams(Double.parseDouble(priceFloor),

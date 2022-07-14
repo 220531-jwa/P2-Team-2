@@ -1,13 +1,28 @@
-let baseUrl = "http://localhost:8081";
+// let baseUrl = "http://localhost:8081";
 async function searchForParts(){
 
+
+
+
+
+
+
     let min = document.getElementById("priceFloorInput").value;
+    if (min.length === 0)
+        {
+            min = 0;
+        }
+
     let max = document.getElementById("priceCeilingInput").value;
+    if (max.length ===0 || max == 0){
+        max = 99999999.99; 
+    }
 
-    //add things to change it to min/max if null/0
+    
 
-    // console.log(min);
-    // console.log(max);
+
+    console.log(`min: ${min}`);
+    console.log(`max: ${max}`);
     // let typeSelector = document.getElementById("partTypeSelector");
     // let type;
 
@@ -19,6 +34,8 @@ async function searchForParts(){
 
     let res = await fetch(
         `${baseUrl}/search?priceFloor=${min}&priceCeiling=${max}`,
+        // `${baseUrl}/search`,
+        
         {
             method: 'GET',
             header: {'Content-Type': 'application/json'}
