@@ -3,6 +3,7 @@ package com.sclass.services;
 import java.util.List;
 
 import com.sclass.models.Build;
+import com.sclass.models.BuildWithNames;
 import com.sclass.repositories.BuildDAO;
 
 public class BuildService {
@@ -34,5 +35,9 @@ public class BuildService {
 
 	public List<Build> getAllBuildsForUser(int userId) {
 		return buildDao.getAllBuildsForUser(userId);
+	}
+	
+	public List<BuildWithNames> getAllBuildsWithNames(int userId){
+		return buildDao.getAllBuildsWithNames(userId);
 	}
 }

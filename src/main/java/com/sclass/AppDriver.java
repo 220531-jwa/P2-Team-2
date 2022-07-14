@@ -38,8 +38,8 @@ public class AppDriver {
 			path("/createAccount",()->{
 				post(uc::createAccount);
 			});
-			path("users/",()->{
-				path("{id}",()->{
+			path("/users",()->{
+				path("/{id}",()->{
 					path("/builds",()->{
 						get(bc::getAllBuildsForUser);
 					});
