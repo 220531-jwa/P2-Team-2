@@ -30,6 +30,7 @@ public class LoginStepImpl {
 		loginPage.usernameInput.sendKeys(username);
 		loginPage.passwordInput.sendKeys(password);
 		loginPage.loginButton.click();
+		loginPage.loginButton.click();
 	}
 
 	@Then("The User should be on their account page")

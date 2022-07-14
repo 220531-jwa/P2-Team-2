@@ -29,7 +29,7 @@ public class PartSearchStepImpl {
 
 	@Given("A Visitor is on the Part Search page")
 	public void a_visitor_is_on_the_part_search_page() {
-		driver.get("http://localhost:8081/partSearch.html");
+		driver.get("http://localhost:8081/searchPage.html");
 	}
 
 //	@When("A Visitor selects {string} from the selection dropdown")

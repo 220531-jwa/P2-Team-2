@@ -26,9 +26,8 @@ public class UserFeaturesRunner {
 		System.setProperty("webdriver.chrome.driver", chrome.getAbsolutePath());
 		driver = new ChromeDriver();
 
-		userPage = new HomePage(driver);
 		loginPage = new LoginPage(driver);
-
+		userPage = new HomePage(driver);
 	}
 
 	@AfterAll

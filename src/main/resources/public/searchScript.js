@@ -75,6 +75,6 @@ async function searchForParts(){
         })
 
         .catch((error)=>{console.log(error);
-        console.log(error);
-        });
+            console.log(error);
+            });
 }

@@ -25,7 +25,7 @@ public class UserFeaturesStepImpl {
 	@Given("A User is logged in")
 	public void a_user_is_logged_in() {
 		driver.get("http://localhost:8081/loginPage.html");
-		loginPage.usernameInput.sendKeys("kpro");
+		loginPage.usernameInput.sendKeys("jmor");
 		loginPage.passwordInput.sendKeys("pass");
 		loginPage.loginButton.click();
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Your Home Page"));

@@ -167,7 +167,7 @@ public class PartDAO {
 		List<Part> parts = new ArrayList<>();
 
 		String sql = "select * from parts where part_id = ? or part_id = ? or part_id = ? or part_id = ?"
-				+ "part_id = ? or part_id = ?";
+				+ "or part_id = ? or part_id = ?";
 
 		try (Connection conn = cu.getConnection()) {
 
@@ -182,12 +182,14 @@ public class PartDAO {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				Part part = new Part(rs.getInt("part_id"), rs.getString("part_name"), 
-						rs.getObject("part_type", partType.class), rs.getInt("part_wattage"), 
-						rs.getDouble("part_price"), rs.getObject("manufacturer", manufacturer.class), 
-						rs.getInt("ram_slots"));
-
-				parts.add(part);
+				manufacturer manu = null;
+				if (rs.getString("manufacturer") != null){
+					manu = manufacturer.valueOf(rs.getString("manufacturer"));
+				}
+				parts.add(new Part(rs.getInt("part_id"), rs.getString("part_name"),
+						partType.valueOf(rs.getString("part_type")), rs.getInt("part_wattage"),
+						rs.getDouble("part_price"), manu,
+						rs.getInt("ram_slots")));
 			}
 			return parts;
 
