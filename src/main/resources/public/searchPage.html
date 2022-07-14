@@ -12,6 +12,39 @@
         <a class="navbar-brand" href="home.html">Return home</a>
 	</nav>
 
+    <div>
+
+        <label for="priceFloorInput">Minimum Price$</label>
+        <input id = "priceFloorInput" type ="number" min ="0" >
+        <label for="priceCeilingInput">Maximum Price$</label>
+        <input id = "priceCeilingInput" type ="number" min ="0" >
+        <br>
+        <!-- <select id="partTypeSelector">
+            <option value="ALL">All Parts</option>
+            <option value="MOBO">Motherboard</option>
+            <option value="CPU">CPU</option>
+            <option value="RAM">RAM</option>
+            <option value="STORAGE">Storage</option>
+            <option value="PSU">PSU</option>
+            <option value="CASE">Case</option>
+        </select> -->
+        <!-- <br> -->
+        <button type ="button" onclick="searchForParts()">Submit Search</button>
+        <br>
+        <table id="resultTable">
+            <tr>
+               <!-- <th>id</th> -->
+               <th>Name</th>
+               <th>Type</th>
+               <th>Price</th>
+               <th>Wattage</th>
+               <th>Manufacturer</th>
+               <th>RAM Slots</th>
+            </tr>
+        </table>
+
+    </div>
+
     <script src="searchScript.js"></script>
     <script src="homePageScript.js"></script>
 </body>

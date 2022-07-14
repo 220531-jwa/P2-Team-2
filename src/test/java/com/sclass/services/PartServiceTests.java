@@ -7,6 +7,7 @@ import static org.mockito.ArgumentMatchers.anyDouble;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ import com.sclass.models.Part;
 import com.sclass.models.Part.manufacturer;
 import com.sclass.models.Part.partType;
 import com.sclass.repositories.PartDAO;
+import com.sclass.services.PartService;
 
 @Suite
 @ExtendWith(MockitoExtension.class)
@@ -42,6 +44,7 @@ class PartServiceTests {
 	void GetPartWithIdValid() {
 		Part part = new Part(1, "4-Slot AMD Motherboard", partType.MOBO, 25, 200.00, manufacturer.AMD, 4);
 
+
 		when(partDaoMock.getPartById(anyInt())).thenReturn(part);
 
 		try {
@@ -52,7 +55,7 @@ class PartServiceTests {
 	}
 
 	@Test
-	void GetPartWithInvalidIdShouldThrowException() {
+	public void GetPartWithInvalidIdShouldThrowException() {
 		int invalidPartId = -1;
 		Exception thrown = assertThrows(Exception.class, () -> {
 			partService.getPartById(invalidPartId);
