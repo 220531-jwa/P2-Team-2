@@ -13,7 +13,6 @@ public class BuildController {
 	
 	public BuildController(BuildService bs) {
 		BuildController.bs = bs;
-		
 	}
 	
 	public void getAllBuildsForUser(Context ctx) {
@@ -32,6 +31,22 @@ public class BuildController {
 			ctx.status(200);
 		}
 		
+	}
+	
+	public void createBuild(Context ctx) {
+		int userId = Integer.parseInt(ctx.pathParam("id"));
+		Build bodyAsBuild = ctx.bodyAsClass(Build.class);
+		
+		try {
+			Build newBuild = bs.createBuild(userId, bodyAsBuild.getBuildName(), bodyAsBuild.getMoboId(), 
+					bodyAsBuild.getCpuId(), bodyAsBuild.getRamId(), bodyAsBuild.getStorageId(), bodyAsBuild.getPsuId(), 
+					bodyAsBuild.getCaseId(), bodyAsBuild.isHasFourRAM());
+			ctx.status(201);
+			ctx.json(newBuild);
+		} catch (Exception e) {
+			ctx.json(e);
+			ctx.status(400);
+		}
 	}
 
 }

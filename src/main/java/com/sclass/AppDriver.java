@@ -18,12 +18,11 @@ import io.javalin.http.staticfiles.Location;
 
 public class AppDriver {
 
-	
-
 	public static void main(String[] args) {
 		UserController uc = new UserController(new UserService(new UserDAO()));
-		BuildController bc = new BuildController(new BuildService(new BuildDAO()));
 		PartController pc = new PartController(new PartService(new PartDAO()));
+		BuildController bc = new BuildController(new BuildService(new BuildDAO(), new PartDAO()));
+
 		
 		Javalin app = Javalin.create(config -> {
 			config.enableCorsForAllOrigins();
@@ -42,6 +41,7 @@ public class AppDriver {
 				path("{id}",()->{
 					path("/builds",()->{
 						get(bc::getAllBuildsForUser);
+						post(bc::createBuild);
 					});
 //					path ("",()->{});
 				});
