@@ -162,4 +162,40 @@ public class PartDAO {
 		return null;
 	}
 
+	public List<Part> getPartsInBuild(int moboId, int cpuId, int ramId, int storageId, int psuId,
+			int caseId) {
+		List<Part> parts = new ArrayList<>();
+
+		String sql = "select * from parts where part_id = ? or part_id = ? or part_id = ? or part_id = ?"
+				+ "part_id = ? or part_id = ?";
+
+		try (Connection conn = cu.getConnection()) {
+
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, moboId);
+			ps.setInt(2, cpuId);
+			ps.setInt(3, ramId);
+			ps.setInt(4, storageId);
+			ps.setInt(5, psuId);
+			ps.setInt(6, caseId);
+			
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Part part = new Part(rs.getInt("part_id"), rs.getString("part_name"), 
+						rs.getObject("part_type", partType.class), rs.getInt("part_wattage"), 
+						rs.getDouble("part_price"), rs.getObject("manufacturer", manufacturer.class), 
+						rs.getInt("ram_slots"));
+
+				parts.add(part);
+			}
+			return parts;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
 }
