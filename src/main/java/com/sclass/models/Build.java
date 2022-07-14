@@ -19,6 +19,7 @@ public class Build {
 			int caseId, boolean hasFourRAM) {
 		super();
 		this.buildId = buildId;
+		this.userId = userId;
 		this.buildName = buildName;
 		this.moboId = moboId;
 		this.cpuId = cpuId;
@@ -27,7 +28,6 @@ public class Build {
 		this.psuId = psuId;
 		this.caseId = caseId;
 		this.hasFourRAM = hasFourRAM;
-		this.userId = userId;
 	}
 
 	public int getBuildId() {
@@ -112,8 +112,8 @@ public class Build {
 
 	@Override
 	public String toString() {
-		return "Build [buildId=" + buildId + ", buildName=" + buildName + ", moboId=" + moboId + ", cpuId=" + cpuId
-				+ ", ramId=" + ramId + ", storageId=" + storageId + ", psuId=" + psuId + ", caseId=" + caseId
-				+ ", hasFourRAM=" + hasFourRAM + ", userId=" + userId + "]";
+		return "Build [buildId=" + buildId + ", userId=" + userId + ", buildName=" + buildName + ", moboId=" + moboId
+				+ ", cpuId=" + cpuId + ", ramId=" + ramId + ", storageId=" + storageId + ", psuId=" + psuId
+				+ ", caseId=" + caseId + ", hasFourRAM=" + hasFourRAM + "]";
 	}
 }
