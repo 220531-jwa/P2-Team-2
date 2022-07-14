@@ -27,7 +27,7 @@ public class PartSearchPage {
 	@FindBy(id = "resultTable")
 	public WebElement resultTable;
 
-	@FindBy(id = "partTypeSelector")
-	public Select partTypeSelector;
+//	@FindBy(id = "partTypeSelector")
+//	public Select partTypeSelector;
 
 }
