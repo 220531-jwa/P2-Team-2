@@ -12,12 +12,13 @@ public class BuildWithNames {
 	private String psuName;
 	private String caseName;
 	private boolean hasFourRAM;
+	private double totalCost;
 	public BuildWithNames() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public BuildWithNames(int buildId, String buildName, String moboName, String cpuName, String ramName,
-			String storageName, String psuName, String caseName, boolean hasFourRAM) {
+			String storageName, String psuName, String caseName, boolean hasFourRAM, double totalCost) {
 		super();
 		this.buildId = buildId;
 //		this.userId = userId;
@@ -29,6 +30,7 @@ public class BuildWithNames {
 		this.psuName = psuName;
 		this.caseName = caseName;
 		this.hasFourRAM = hasFourRAM;
+		this.totalCost = totalCost;
 	}
 	public int getBuildId() {
 		return buildId;
@@ -90,12 +92,19 @@ public class BuildWithNames {
 	public void setHasFourRAM(boolean hasFourRAM) {
 		this.hasFourRAM = hasFourRAM;
 	}
+	public double getTotalCost() {
+		return totalCost;
+	}
+	public void setTotalCost(double totalCost) {
+		this.totalCost = totalCost;
+	}
 	@Override
 	public String toString() {
-		return "BuildWithNames [buildId=" + buildId +  ", buildName=" + buildName + ", moboName="
-				+ moboName + ", cpuName=" + cpuName + ", ramName=" + ramName + ", storageName=" + storageName
-				+ ", psuName=" + psuName + ", caseName=" + caseName + ", hasFourRAM=" + hasFourRAM + "]";
+		return "BuildWithNames [buildId=" + buildId + ", buildName=" + buildName + ", moboName=" + moboName
+				+ ", cpuName=" + cpuName + ", ramName=" + ramName + ", storageName=" + storageName + ", psuName="
+				+ psuName + ", caseName=" + caseName + ", hasFourRAM=" + hasFourRAM + ", totalCost=" + totalCost + "]";
 	}
+
 	
 	
 	

@@ -23,6 +23,11 @@ async function searchForParts(){
 
     console.log(`min: ${min}`);
     console.log(`max: ${max}`);
+    
+    if (min > max){
+        alert("invalid range!");
+        return;
+    }
     // let typeSelector = document.getElementById("partTypeSelector");
     // let type;
 
