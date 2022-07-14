@@ -21,11 +21,49 @@ public class BuildService {
 			int caseId, boolean hasFourRam) throws Exception {
 		// Get all parts from DB in build
 		List<Part> partsInBuild = partDao.getPartsInBuild(moboId, cpuId, ramId, storageId, psuId, caseId);
+		
 		// Need to parse this list to individual part objects
+		Part mobo = null, cpu = null, ram = null, storage = null, psu = null, casePart = null;
+		for (Part part : partsInBuild) {
+			switch(part.getPartType()) {
+			case MOBO:
+				mobo = part;
+				break;
+			case CPU:
+				cpu = part;
+				break;
+			case RAM:
+				ram = part;
+				break;
+			case STORAGE:
+				storage = part;
+				break;
+			case PSU:
+				psu = part;
+				break;
+			case CASE:
+				casePart = part;
+				break;
+			}
+		}
 		
 		// Check if mobo and cpu have same manufacturer
-		// Check if mobo has enough capacity for ram (maybe do on frontend?)
+		if (mobo.getManufacturer() != cpu.getManufacturer()) {
+			throw new Exception("Can't create build: CPU isn't compatible with selected motherboard.");
+		}
+		
+		// Check if mobo has enough capacity for ram
+		int ramInBuild = hasFourRam ? ram.getRamSlots() * 2 : ram.getRamSlots();
+		if (mobo.getRamSlots() < ramInBuild) {
+			throw new Exception("Can't create build: Motherboard doesn't have enough RAM slots.");
+		}
+		
 		// Check if psu wattage is greater than the sum of the other parts
+		int totalWattage = mobo.getPartWattage() + cpu.getPartWattage() + ram.getPartWattage() + 
+				storage.getPartWattage() + casePart.getPartWattage();
+		if (totalWattage > psu.getPartWattage()) {
+			throw new Exception("Can't create build: PSU doesn't supply enough wattage to power the current build.");
+		}
 		
 		return buildDao.createBuild(userId, name, moboId, cpuId, ramId, storageId, psuId, caseId, hasFourRam);
 	}

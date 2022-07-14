@@ -26,18 +26,20 @@ public class CreateBuildPage {
 //		return new Select(cpuElement);
 //	}
 	
+	public Select motherboardSelector;
 	
 	public Select cpuSelector;
 	
-	public Select motherboardSelector;
-	
 	public Select ramSelector;
 	
+	@FindBy(id = "hasFourRAMCheckbox")
+	public WebElement hasFourRAMCheckBox;
+	
 	public Select storageSelector;
+
+	public Select psuSelector;
 	
 	public Select caseSelector;
-	
-	public Select psuSelector;
 	
 	@FindBy(id = "submit")
 	public WebElement submitButton;
