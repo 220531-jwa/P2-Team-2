@@ -39,23 +39,10 @@ public class CreateBuildStepImpl {
 
 	@Given("on the Create Build Page")
 	public void on_the_create_build_page() {
-
 		userPage.createBuild.click();
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Create a Build"));
 		//		assertEquals("Create a Build", driver.getTitle());
 	
-	}
-
-	@When("A User click the CPU Selector")
-	public void a_user_click_the_cpu_selector() {
-		createBuildPage.cpuSelector = new Select(driver.findElement(By.id("CPU")));
-		createBuildPage.cpuSelector.selectByIndex(1);
-	}
-
-	@Then("The User should be able to pick a CPU")
-	public void the_user_should_be_able_to_pick_a_cpu() {
-		
-		assertEquals("0", createBuildPage.cpuSelector.getFirstSelectedOption().getText());
 	}
 
 	@When("A User click the Motherboard Selector")
@@ -68,6 +55,18 @@ public class CreateBuildStepImpl {
 	public void the_user_should_be_able_to_pick_a_motherboard() {
 		
 		assertEquals("0", createBuildPage.motherboardSelector.getFirstSelectedOption().getText());
+	}
+	
+	@When("A User click the CPU Selector")
+	public void a_user_click_the_cpu_selector() {
+		createBuildPage.cpuSelector = new Select(driver.findElement(By.id("CPU")));
+		createBuildPage.cpuSelector.selectByIndex(1);
+	}
+
+	@Then("The User should be able to pick a CPU")
+	public void the_user_should_be_able_to_pick_a_cpu() {
+		
+		assertEquals("0", createBuildPage.cpuSelector.getFirstSelectedOption().getText());
 	}
 
 	@When("A User click the RAM Selector")
@@ -93,18 +92,7 @@ public class CreateBuildStepImpl {
 	public void the_user_should_be_able_to_pick_a_storage() {
 		assertEquals("0", createBuildPage.storageSelector.getFirstSelectedOption().getText());
 	}
-
-	@When("A User click the Case Selector")
-	public void a_user_click_the_case_selector() {
-		createBuildPage.caseSelector = new Select(driver.findElement(By.id("Case")));
-		createBuildPage.caseSelector.selectByIndex(1);
-	}
-
-	@Then("The User should be able to pick a Case")
-	public void the_user_should_be_able_to_pick_a_case() {
-		assertEquals("0", createBuildPage.caseSelector.getFirstSelectedOption().getText());
-	}
-
+	
 	@When("A User click the PowerSupply Selector")
 	public void a_user_click_the_power_supply_selector() {
 		createBuildPage.psuSelector = new Select(driver.findElement(By.id("PSU")));
@@ -116,6 +104,15 @@ public class CreateBuildStepImpl {
 		assertEquals("0", createBuildPage.psuSelector.getFirstSelectedOption().getText());
 	}
 
+	@When("A User click the Case Selector")
+	public void a_user_click_the_case_selector() {
+		createBuildPage.caseSelector = new Select(driver.findElement(By.id("Case")));
+		createBuildPage.caseSelector.selectByIndex(1);
+	}
 
+	@Then("The User should be able to pick a Case")
+	public void the_user_should_be_able_to_pick_a_case() {
+		assertEquals("0", createBuildPage.caseSelector.getFirstSelectedOption().getText());
+	}
 
 }
