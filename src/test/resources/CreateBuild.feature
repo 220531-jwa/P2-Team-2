@@ -20,7 +20,7 @@
 Feature: PC Builder Create Build
  
  Background:
- 	Given A User is logged in 
+ 	Given A User is logged in
  	And on the Create Build Page
  
   Scenario: A User can Create New Build button
@@ -43,5 +43,7 @@ Feature: PC Builder Create Build
  	When A User click the PowerSupply Selector
  	Then The User should be able to pick a PowerSupply
  
+ 	When A User clicks on submit build
+ 	Then They are redirected back to their home page
 
   

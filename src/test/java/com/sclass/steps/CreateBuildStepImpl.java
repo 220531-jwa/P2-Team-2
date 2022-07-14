@@ -25,8 +25,6 @@ public class CreateBuildStepImpl {
 	private HomePage userPage = CreateBuildRunner.userPage;
 	private CreateBuildPage createBuildPage = CreateBuildRunner.createBuildPage;
 
-	
-	
 //	@Given("A User is logged in")
 //	public void a_user_is_logged_in() {
 //		driver.get("http://localhost:8080/home.html");
@@ -40,13 +38,11 @@ public class CreateBuildStepImpl {
 	@Given("on the Create Build Page")
 	public void on_the_create_build_page() {
 		userPage.createBuild.click();
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Create a Build"));
-		//		assertEquals("Create a Build", driver.getTitle());
-	
 	}
 
 	@When("A User click the Motherboard Selector")
 	public void a_user_click_the_motherboard_selector() {
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Create New Build"));
 		createBuildPage.motherboardSelector = new Select(driver.findElement(By.id("Motherboard")));
 		createBuildPage.motherboardSelector.selectByIndex(1);
 	}
@@ -54,7 +50,7 @@ public class CreateBuildStepImpl {
 	@Then("The User should be able to pick a motherboard")
 	public void the_user_should_be_able_to_pick_a_motherboard() {
 		
-		assertEquals("0", createBuildPage.motherboardSelector.getFirstSelectedOption().getText());
+		assertEquals("1", createBuildPage.motherboardSelector.getFirstSelectedOption().getText());
 	}
 	
 	@When("A User click the CPU Selector")
@@ -66,7 +62,7 @@ public class CreateBuildStepImpl {
 	@Then("The User should be able to pick a CPU")
 	public void the_user_should_be_able_to_pick_a_cpu() {
 		
-		assertEquals("0", createBuildPage.cpuSelector.getFirstSelectedOption().getText());
+		assertEquals("5", createBuildPage.cpuSelector.getFirstSelectedOption().getText());
 	}
 
 	@When("A User click the RAM Selector")
@@ -78,7 +74,7 @@ public class CreateBuildStepImpl {
 	@Then("The User should be able to pick a RAM")
 	public void the_user_should_be_able_to_pick_a_ram() {
 		
-		assertEquals("0", createBuildPage.ramSelector.getFirstSelectedOption().getText());
+		assertEquals("7", createBuildPage.ramSelector.getFirstSelectedOption().getText());
 		
 	}
 
@@ -90,7 +86,7 @@ public class CreateBuildStepImpl {
 
 	@Then("The User should be able to pick a Storage")
 	public void the_user_should_be_able_to_pick_a_storage() {
-		assertEquals("0", createBuildPage.storageSelector.getFirstSelectedOption().getText());
+		assertEquals("8", createBuildPage.storageSelector.getFirstSelectedOption().getText());
 	}
 	
 	@When("A User click the PowerSupply Selector")
@@ -101,7 +97,7 @@ public class CreateBuildStepImpl {
 
 	@Then("The User should be able to pick a PowerSupply")
 	public void the_user_should_be_able_to_pick_a_power_supply() {
-		assertEquals("0", createBuildPage.psuSelector.getFirstSelectedOption().getText());
+		assertEquals("9", createBuildPage.psuSelector.getFirstSelectedOption().getText());
 	}
 
 	@When("A User click the Case Selector")
@@ -112,7 +108,17 @@ public class CreateBuildStepImpl {
 
 	@Then("The User should be able to pick a Case")
 	public void the_user_should_be_able_to_pick_a_case() {
-		assertEquals("0", createBuildPage.caseSelector.getFirstSelectedOption().getText());
+		assertEquals("11", createBuildPage.caseSelector.getFirstSelectedOption().getText());
 	}
 
+	@When("A User clicks on submit build")
+	public void a_user_clicks_on_submit_build() {
+		createBuildPage.submitButton.click();
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Your Home Page"));
+	}
+
+	@Then("They are redirected back to their home page")
+	public void they_are_redirected_back_to_their_home_page() {
+		assertEquals("Your Home Page", driver.getTitle());
+	}
 }

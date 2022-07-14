@@ -42,11 +42,10 @@ function populateDropdowns(partsList) {
 
         switch(partType) {
             case('MOBO'):
-                newOption.innerText += ' - ' + part.manufacturer + ' - ' + part.ramSlots + ' RAM Slots';
+                newOption.innerText += ' - ' + part.ramSlots + ' RAM Slots';
                 moboSelector.appendChild(newOption);
                 break;
             case('CPU'):
-                newOption.innerText += ' - ' + part.manufacturer;
                 cpuSelector.appendChild(newOption);
                 break;
             case('RAM'):
