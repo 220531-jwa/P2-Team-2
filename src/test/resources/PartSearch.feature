@@ -21,9 +21,8 @@ Feature: Part Search
 	Background:
 		Given A Visitor is on the Part Search page
  
-  Scenario Outline: A Visitor wants to view parts of a certain type with price constraints
-
-    #When A Visitor selects "<parttype>" from the selection dropdown
+  Scenario Outline: A Visitor wants to view parts with price constraints
+ 
     When A Visitor enters a bottom-limit cash value into "<pricefloor>"
     And A Visitor enters a top-limit cash value into "<priceceiling>"
     And A Visitor clicks the PartSearchButton
@@ -31,12 +30,9 @@ Feature: Part Search
     
     Examples:
     |pricefloor	|priceceiling	|
-    |0						|0							|
-    |100				|		0					|
-    |	0					|			0				|
-    |		0				|150					|
-    |			0			|				0			|
     |50					|150					|
-    |				0		|					0		|
+    |						|							|
+    |0					|0						|
+
 
 
