@@ -13,8 +13,8 @@ import com.sclass.utils.ConnectionUtility;
 public class BuildDAO {
 
 	private static ConnectionUtility cu = ConnectionUtility.getConnectionUtility();
-	
-	public Build createBuild(int userId, String name, int moboId, int cpuId, int ramId, int storageId, int psuId, 
+
+	public Build createBuild(int userId, String name, int moboId, int cpuId, int ramId, int storageId, int psuId,
 			int caseId, boolean hasFourRam) {
 		String sql = "insert into pcbuilder.builds values (default, ?, ?, ?, ?, ?, ?, ?, ?, ?) returning *";
 
@@ -47,7 +47,7 @@ public class BuildDAO {
 	public Build getBuildById(int buildId) {
 		String sql = "select * from pcbuilder.builds where build_id = ?";
 
-		try (Connection conn = cu.getConnection();) {
+		try (Connection conn = cu.getConnection()) {
 			PreparedStatement ps = conn.prepareStatement(sql);
 
 			ps.setInt(1, buildId);
@@ -91,9 +91,7 @@ public class BuildDAO {
 	}
 }
 
-
-
-//select build_id, build_name, mobo.part_name as mobo_name, cpu.part_name as cpu_name, ram.part_name as ram_name, 
+//select build_id, build_name, mobo.part_name as mobo_name, cpu.part_name as cpu_name, ram.part_name as ram_name,
 //stor.part_name as storage_name, psu.part_name as psu_name, cas.part_name as case_name, build_has_four_ram
 //	from pcbuilder.builds bt
 //	left outer join pcbuilder.parts mobo on bt.build_mobo = mobo.part_id
