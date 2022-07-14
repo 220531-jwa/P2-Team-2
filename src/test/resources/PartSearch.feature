@@ -21,22 +21,17 @@ Feature: Part Search
 	Background:
 		Given A Visitor is on the Part Search page
  
-  Scenario Outline: A Visitor wants to view parts of a certain type with price constraints
+  Scenario Outline: A Visitor wants to view parts with price constraints
 
-    When A Visitor selects "<parttype>" from the selection dropdown
-    And A Visitor enters a bottom-limit cash value into "<pricefloor>"
+    When A Visitor enters a bottom-limit cash value into "<pricefloor>"
     And A Visitor enters a top-limit cash value into "<priceceiling>"
     And A Visitor clicks the PartSearchButton
     Then A relevant table of results should populate the page
     
     Examples:
-    |parttype		|pricefloor	|priceceiling	|
-    |All				|						|							|
-    |Motherboard|100				|							|
-    |CPU				|						|							|
-    |RAM				|						|150					|
-    |Case				|						|							|
-    |Storage		|50					|150					|
-    |PSU				|						|							|
+    |pricefloor	|priceceiling	|
+    |50					|150					|
+    |						|							|
+    |0					|0						|
 
 

@@ -48,4 +48,10 @@ public class PartController {
 		}
 	}
 
+//	public void getPartsByType(Context ctx) {
+//		Part.partType partType = String.valueOf(ctx.pathParam("partType"));
+//		Part part = partService.getPartsByType();
+//
+//	}
+
 }
