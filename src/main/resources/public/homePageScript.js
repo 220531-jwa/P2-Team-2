@@ -15,7 +15,7 @@ async function PopulateBuilds(){
 
     else{
         let res = await fetch(`
-                ${baseUrl}/users/${inUser.id}/builds`, //endpoint?
+                ${baseUrl}/users/${foundUser.id}/builds`, //endpoint?
                 {
                     method: 'GET',
                     header: {'Content-Type': 'application/json'},

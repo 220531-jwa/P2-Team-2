@@ -18,7 +18,7 @@ public class UserController {
 
 	public void loginUser(Context ctx) {
 		User u = ctx.bodyAsClass(User.class);
-
+		System.out.println(u);
 		User loggedIn = us.login(u.getUsername(), u.getPass());
 
 		if (loggedIn != null) {
