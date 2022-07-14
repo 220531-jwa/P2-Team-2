@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Home Page</title>
+
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+        </style>
+
+</head>
+<body onload = "PopulateBuilds()">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="createBuildPage.html">Create Build</a>
+		<!-- <a class="navbar-brand" href="editBuildPage.html">Edit Build</a> -->
+		<!-- <a class="navbar-brand" href="completedBuildPage.html">Completed Builds</a> -->
+        <a class="navbar-brand" href="searchPage.html">Search for Parts</a>
+        <a class="navbar-brand" href="loginPage.html" onclick="logout()">Logout</a>
+
+
+	</nav>
+
+    <h1>PUT A LIST OF ALL YOUR COMPLETED BUILDS HERE</h1>
+    <table id="buildTable">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Motherboard</th>
+            <th>CPU</th>
+            <th>RAM</th>
+            <th>4 ram sticks?</th>
+            <th>Storage</th>
+            <th>PSU</th>
+            <th>Case</th>
+            
+            <!-- <th>owner</th> -->
+        </tr>
+        <tr>
+
+        </tr>
+    </table>
+   
+    <!-- <button id="createBuild" type="button">Create Build</button>
+    
+    <button id="editBuild" type="button">Edit Build</button>
+    
+    <button id="completedBuilds" type="button">Completed Builds</button>
+    
+    <button id="partSearch" type="button">Part Search</button>
+
+    <button id="logout" type="button" onclick="logout()">Logout</button> -->
+
+    <script src="homePageScript.js"></script>
+</body>
+</html>
