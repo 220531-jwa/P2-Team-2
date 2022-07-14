@@ -21,7 +21,7 @@ public class PartController {
 		List<Part> parts;
 
 		try {
-			if (priceFloor == null || priceCeiling == null) {
+			if (priceFloor == null && priceCeiling == null) {
 				parts = partService.getAllParts();
 			} else {
 				parts = partService.getAllPartsWithParams(Double.parseDouble(priceFloor),
@@ -38,6 +38,21 @@ public class PartController {
 
 	public void GetPartById(Context ctx) {
 		int partId = Integer.parseInt(ctx.pathParam("partId"));
+		try {
+			Part part = partService.getPartById(partId);
+			ctx.status(200);
+			ctx.json(part);
+		} catch (Exception e) {
+			e.printStackTrace();
+			ctx.status(404);
+			ctx.result("Part not Found");
+		}
 	}
+
+//	public void getPartsByType(Context ctx) {
+//		Part.partType partType = String.valueOf(ctx.pathParam("partType"));
+//		Part part = partService.getPartsByType();
+//
+//	}
 
 }
