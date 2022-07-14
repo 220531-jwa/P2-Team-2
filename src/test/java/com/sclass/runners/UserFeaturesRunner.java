@@ -28,7 +28,6 @@ public class UserFeaturesRunner {
 
 		loginPage = new LoginPage(driver);
 		userPage = new HomePage(driver);
-		
 	}
 
 	@AfterAll
