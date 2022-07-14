@@ -43,8 +43,8 @@ public class UserFeaturesStepImpl {
 
 	@Then("They are redirected to the CreateBuild Page")
 	public void they_are_redirected_to_the_create_build_page() {
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Create a Build"));
-		assertEquals("Create a Build", driver.getTitle());
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Create New Build"));
+		assertEquals("Create New Build", driver.getTitle());
 	}
 
 	@When("They click they click the EditBuild button")
@@ -77,7 +77,7 @@ public class UserFeaturesStepImpl {
 	@Then("They are redirected to the PartSearch Page")
 	public void they_are_redirected_to_the_part_search_page() {
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Part Search Page"));
-		assertEquals("Search for Parts", driver.getTitle());
+		assertEquals("Part Search Page", driver.getTitle());
 	}
 
 }
