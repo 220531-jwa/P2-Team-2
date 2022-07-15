@@ -23,7 +23,8 @@ async function searchForParts(){
 
     console.log(`min: ${min}`);
     console.log(`max: ${max}`);
-    console.log(min > max);
+    
+    console.log((min)>(max));
     if ((max - min) <0){
         alert("invalid range!");
         return;

@@ -1,12 +1,22 @@
-let baseUrl = 'http://localhost:8081';
+// let baseUrl = 'http://localhost:8081';
 
-window.onload = function () {
+window.onload = async function () {
     // console.log(JSON.parse(sessionStorage.getItem('fetchThis')));
-    getParts();
+    await getParts();
+    
+    var x = document.getElementById("motherboardSelector");
+        
+    // console.log(x.options.length);
+    for (let i =0; i < x.options.length; i++){
+        console.log(x.options[i].value);
+
+    }
 }
 
-async function editBuild() {
-    let submitBtn = document.getElementById('submitEditBtn');
+async function submitEditBuild() {
+    // let submitBtn = document.getElementById('submitEditBtn');
+
+   
 
     buildIdValue = document.getElementById('buildId').value; // If I can't get ID from session
     nameValue = document.getElementById('nameInput').value;
@@ -24,6 +34,7 @@ async function editBuild() {
         alert('Select a Motherboard');
         return;
     } else
+    
         // Check if fields are filled
         if (moboValue === 'none') {
             alert('Select a Motherboard');

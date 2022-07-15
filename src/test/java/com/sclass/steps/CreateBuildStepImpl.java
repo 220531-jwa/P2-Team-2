@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.sclass.pages.CreateBuildPage;
 import com.sclass.pages.HomePage;
+import com.sclass.pages.LoginPage;
 import com.sclass.runners.CreateBuildRunner;
 
 import io.cucumber.java.en.Given;
@@ -23,7 +24,7 @@ import io.cucumber.java.en.When;
 public class CreateBuildStepImpl {
 
 	private WebDriver driver = CreateBuildRunner.driver;
-//	private LoginPage loginPage = CreateBuildRunner.loginPage;
+	private LoginPage loginPage = CreateBuildRunner.loginPage;
 	private HomePage userPage = CreateBuildRunner.userPage;
 	private CreateBuildPage createBuildPage = CreateBuildRunner.createBuildPage;
 	
