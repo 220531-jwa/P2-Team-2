@@ -21,7 +21,6 @@ Feature: User Account Features
 
 	Background:
 		Given A User is logged in
-#		And A User is on their UserPage	
     
   Scenario: Create a New Build
     When They click they click the CreateBuild button
@@ -30,10 +29,6 @@ Feature: User Account Features
 #	Scenario: Edit a Build
     #When They click they click the EditBuild button
     #Then They are redirected to the EditBuild Page
-    
-#	Scenario: View Created Build(s)
-    #When They click they click the CompletedBuilds button
-    #Then They are redirected to the CompletedBuilds Page
     
 	Scenario: Search for Parts
     When They click they click the PartSearch button
