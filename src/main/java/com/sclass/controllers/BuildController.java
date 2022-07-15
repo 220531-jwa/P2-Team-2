@@ -58,7 +58,7 @@ public class BuildController {
 
 		try {
 			bs.editBuild(bodyAsBuild);
-			ctx.status(205);
+			ctx.status(202);
 			ctx.json(bodyAsBuild);
 		} catch (Exception e) {
 			ctx.json(e);
