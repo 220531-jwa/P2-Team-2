@@ -1,5 +1,7 @@
 package com.sclass.services;
 
+import java.util.List;
+
 import com.sclass.models.Build;
 import com.sclass.repositories.BuildDAO;
 
@@ -21,6 +23,11 @@ public class BuildService {
 	}
 
 	public Object getAllBuildsForUser(int userId) {
+		return null;
+	}
+
+	public List<Build> getOtherUserBuilds(int id) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }

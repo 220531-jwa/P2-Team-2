@@ -34,6 +34,9 @@ public class AppDriver {
 			path("/createAccount",()->{
 				post(uc::createAccount);
 			});
+			path("/userbuilds",()->{
+				post(bc::getOtherUserBuilds);
+			});
 		});
 
 	}
