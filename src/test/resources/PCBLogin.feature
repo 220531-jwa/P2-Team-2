@@ -27,10 +27,10 @@ Feature: PC Builder Login
     Then The User should be on their account page
 
     Examples: 
-      | username  | password	|
-      | kpro			|   pass		|
-      | elle	 		|		pass		|
-      |	mfar			|		pass		|
-      | jmor			|		pass		|
+      | username  | password|
+      | kpro			| pass		|
+      | elle	 		|	pass		|
+      |	mfar			|	pass		|
+      | jmor			|	pass		|
       
       

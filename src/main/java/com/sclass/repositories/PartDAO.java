@@ -18,7 +18,7 @@ public class PartDAO {
 
 	public Part getPartById(int partId) {
 
-		String sql = "select * from parts where part_id = ?";
+		String sql = "select * from pcbuilder.parts where part_id = ?";
 
 		try (Connection conn = cu.getConnection()) {
 
@@ -28,9 +28,13 @@ public class PartDAO {
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
+				manufacturer manu = null;
+				if (rs.getString("manufacturer") != null){
+				 manu = manufacturer.valueOf(rs.getString("manufacturer"));
+				}
 				return new Part(rs.getInt("part_id"), rs.getString("part_name"),
-						rs.getObject("part_type", partType.class), rs.getInt("part_wattage"),
-						rs.getDouble("part_price"), rs.getObject("manufacturer", manufacturer.class),
+						partType.valueOf(rs.getString("part_type")), rs.getInt("part_wattage"),
+						rs.getDouble("part_price"), manu,
 						rs.getInt("ram_slots"));
 			}
 		} catch (SQLException e) {
@@ -43,7 +47,7 @@ public class PartDAO {
 
 		List<Part> parts = new ArrayList<>();
 
-		String sql = "select * from parts where part_type = ?";
+		String sql = "select * from pcbuilder.parts where part_type = ?";
 
 		try (Connection conn = cu.getConnection()) {
 
@@ -78,7 +82,7 @@ public class PartDAO {
 
 		List<Part> parts = new ArrayList<>();
 
-		String sql = "select * from parts";
+		String sql = "select * from pcbuilder.parts";
 
 		try (Connection conn = cu.getConnection()) {
 
@@ -87,14 +91,17 @@ public class PartDAO {
 
 			while (rs.next()) {
 				int partId = rs.getInt("part_id");
-				String partName = rs.getString("part_name");
-				partType partType = rs.getObject("part_type", partType.class);
+				String partName = rs.getString("part_name");		
+				partType partT = partType.valueOf(rs.getString("part_type"));
 				int partWattage = rs.getInt("part_wattage");
 				double partPrice = rs.getDouble("part_price");
-				manufacturer manufacturer = rs.getObject("manufacturer", manufacturer.class);
+				manufacturer manu = null;
+				if (rs.getString("manufacturer") != null){
+				 manu = manufacturer.valueOf(rs.getString("manufacturer"));
+				}
 				int ramSlots = rs.getInt("ram_slots");
 
-				Part part = new Part(partId, partName, partType, partWattage, partPrice, manufacturer, ramSlots);
+				Part part = new Part(partId, partName, partT, partWattage, partPrice, manu, ramSlots);
 
 				parts.add(part);
 
@@ -112,7 +119,7 @@ public class PartDAO {
 
 		List<Part> parts = new ArrayList<>();
 
-		String sql = "select * from parts where part_price <= ? and part_price >= ?";
+		String sql = "select * from pcbuilder.parts where part_price <= ? and part_price >= ?";
 
 		try (Connection conn = cu.getConnection()) {
 
@@ -125,16 +132,64 @@ public class PartDAO {
 			while (rs.next()) {
 				int partId = rs.getInt("part_id");
 				String partName = rs.getString("part_name");
-				partType partType = rs.getObject("part_type", partType.class);
+//				partType partType = rs.getObject("part_type", partType.class);
+				partType partT = partType.valueOf(rs.getString("part_type"));
+				System.out.println(partT);
 				int partWattage = rs.getInt("part_wattage");
 				double partPrice = rs.getDouble("part_price");
-				manufacturer manufacturer = rs.getObject("manufacturer", manufacturer.class);
+				
+				manufacturer manu = null;
+				if (rs.getString("manufacturer") != null){
+				 manu = manufacturer.valueOf(rs.getString("manufacturer"));
+				}
+		
 				int ramSlots = rs.getInt("ram_slots");
 
-				Part part = new Part(partId, partName, partType, partWattage, partPrice, manufacturer, ramSlots);
+				Part part = new Part(partId, partName, partT, partWattage, partPrice, manu, ramSlots);
 
 				parts.add(part);
+			}
+			
+			for (Part p : parts) {
+				System.out.println(p);
+			}
+			return parts;
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	public List<Part> getPartsInBuild(int moboId, int cpuId, int ramId, int storageId, int psuId,
+			int caseId) {
+		List<Part> parts = new ArrayList<>();
+
+		String sql = "select * from pcbuilder.parts where part_id = ? or part_id = ? or part_id = ? or part_id = ?"
+				+ "or part_id = ? or part_id = ?";
+
+		try (Connection conn = cu.getConnection()) {
+
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, moboId);
+			ps.setInt(2, cpuId);
+			ps.setInt(3, ramId);
+			ps.setInt(4, storageId);
+			ps.setInt(5, psuId);
+			ps.setInt(6, caseId);
+			
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				manufacturer manu = null;
+				if (rs.getString("manufacturer") != null){
+					manu = manufacturer.valueOf(rs.getString("manufacturer"));
+				}
+				parts.add(new Part(rs.getInt("part_id"), rs.getString("part_name"),
+						partType.valueOf(rs.getString("part_type")), rs.getInt("part_wattage"),
+						rs.getDouble("part_price"), manu,
+						rs.getInt("ram_slots")));
 			}
 			return parts;
 

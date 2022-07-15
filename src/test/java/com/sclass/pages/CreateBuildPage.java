@@ -16,61 +16,25 @@ public class CreateBuildPage {
 		PageFactory.initElements(driver, this);
 	}
 	
-//	@FineBy(id="newBuild")
-//	public WebElement newBuildButton
-	
-//	@FindBy(id="CPU")
-//	public WebElement cpuElement;
-//	public Select cpuSelector = new Select(cpuElement);
-//	public Select getCPUSelector() {
-//		return new Select(cpuElement);
-//	}
-	
-	
-	public Select cpuSelector;
+	@FindBy(id = "nameInput")
+	public WebElement nameInput;
 	
 	public Select motherboardSelector;
 	
+	public Select cpuSelector;
+	
 	public Select ramSelector;
 	
+	@FindBy(id = "hasFourRAMCheckbox")
+	public WebElement hasFourRAMCheckBox;
+	
 	public Select storageSelector;
+
+	public Select psuSelector;
 	
 	public Select caseSelector;
 	
-	public Select psuSelector;
-	
-	@FindBy(id = "submit")
+	@FindBy(id = "submitBuildBtn")
 	public WebElement submitButton;
-	
-//	@FindBy(id="Motherboard")
-//	public WebElement motherboardElement;
-//	public Select getMotherboardSelector() {
-//		return new Select(motherboardElement);
-//	}
-//	
-//	@FindBy(id="RAM")
-//	public WebElement ramElement;
-//	public Select getRAMSelector() {
-//		return new Select(ramElement);
-//	}
-//	
-//	@FindBy(id="Storage")
-//	public WebElement storageElement;
-//	public Select getStorageSelector() {
-//		return new Select(storageElement);
-//	}
-//	
-//	@FindBy(id="Case")
-//	public WebElement caseElement;
-//	public Select getCaseSelector() {
-//		return new Select(caseElement);
-//	}
-//	
-//	@FindBy(id="PowerSupply")
-//	public WebElement powerSupplyElement;
-//	public Select getPowerSupplySelector() {
-//		return new Select(powerSupplyElement);
-//	}
-//	
 	
 }

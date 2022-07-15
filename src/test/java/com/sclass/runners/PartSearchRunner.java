@@ -2,6 +2,7 @@ package com.sclass.runners;
 
 import java.io.File;
 
+import org.junit.platform.suite.api.Suite;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -10,6 +11,7 @@ import com.sclass.pages.PartSearchPage;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
 
+@Suite
 public class PartSearchRunner {
 
 	public static WebDriver driver;
