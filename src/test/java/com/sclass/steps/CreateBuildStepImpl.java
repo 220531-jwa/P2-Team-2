@@ -13,17 +13,17 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.sclass.pages.CreateBuildPage;
-import com.sclass.pages.LoginPage;
 import com.sclass.pages.HomePage;
 import com.sclass.runners.CreateBuildRunner;
-import com.sclass.runners.LoginRunner;
 
-import io.cucumber.java.en.*;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class CreateBuildStepImpl {
 
 	private WebDriver driver = CreateBuildRunner.driver;
-	private LoginPage loginPage = CreateBuildRunner.loginPage;
+//	private LoginPage loginPage = CreateBuildRunner.loginPage;
 	private HomePage userPage = CreateBuildRunner.userPage;
 	private CreateBuildPage createBuildPage = CreateBuildRunner.createBuildPage;
 	
@@ -53,8 +53,9 @@ public class CreateBuildStepImpl {
 	@Then("The User should be able to pick a Motherboard")
 	public void the_user_should_be_able_to_pick_a_motherboard() {
 		assertEquals("AMD 4-Slot Mobo", createBuildPage.motherboardSelector.getFirstSelectedOption().getText());
+
 	}
-	
+
 	@When("A User click the CPU Selector")
 	public void a_user_click_the_cpu_selector() {
 		createBuildPage.cpuSelector = new Select(driver.findElement(By.id("cpuSelector")));
@@ -64,6 +65,7 @@ public class CreateBuildStepImpl {
 	@Then("The User should be able to pick a CPU")
 	public void the_user_should_be_able_to_pick_a_cpu() {
 		assertEquals("AMD CPU", createBuildPage.cpuSelector.getFirstSelectedOption().getText());
+
 	}
 
 	@When("A User click the RAM Selector")
@@ -87,7 +89,7 @@ public class CreateBuildStepImpl {
 	public void the_user_should_be_able_to_pick_a_storage() {
 		assertEquals("Generic Storage", createBuildPage.storageSelector.getFirstSelectedOption().getText());
 	}
-	
+
 	@When("A User click the PowerSupply Selector")
 	public void a_user_click_the_power_supply_selector() {
 		createBuildPage.psuSelector = new Select(driver.findElement(By.id("psuSelector")));

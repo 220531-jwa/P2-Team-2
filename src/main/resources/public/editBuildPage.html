@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create New Build</title>
+    <title>Edit Build Page</title>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="home.html">Return home</a>
         <a class="navbar-brand" href="loginPage.html" onclick="logout()">Logout</a>
     </nav>
-    <br/>
+    <br />
 
-    <label for="nameInput">Build Name:</label>
-    <input id="nameInput" type="text" placeholder="Build Name Here"></input>
-    <br/><br/>
+    <h2>Edit Build Page</h2>
+    <br />
 
+    <label for="buildIdInput">Build ID:</label>
+    <input type="number" min="1" id="buildIdInput">        
+    <br /><br />
+    
     <label for="motherboardSelector">Motherboard:</label>
     <select id="motherboardSelector">
         <option value="none" selected disabled hidden>Select a Motherboard</option>
     </select>
-    <br/><br/>
+    <br /><br />
 
     <label for="cpuSelector"> CPU:</label>
     <select id="cpuSelector">
         <option value="none" selected disabled hidden>Select a CPU</option>
     </select>
-    <br/><br/>
+    <br /><br />
 
     <label for="ramSelector">RAM:</label>
     <select id="ramSelector">
@@ -35,29 +40,32 @@
     </select>
     <label for="hasFourRAMCheckbox">4 RAM?</label>
     <input id="hasFourRAMCheckbox" type="checkbox">
-    <br/><br/>
+    <br /><br />
 
     <label for="storageSelector">Storage:</label>
     <select id="storageSelector">
         <option value="none" selected disabled hidden>Select Storage</option>
     </select>
-    <br/><br/>
+    <br /><br />
 
     <label for="psuSelector">PSU:</label>
     <select id="psuSelector">
         <option value="none" selected disabled hidden>Select a PSU</option>
     </select>
-    <br/><br/>
+    <br /><br />
 
     <label for="caseSelector">Case:</label>
     <select id="caseSelector">
         <option value="none" selected disabled hidden>Select a Case</option>
     </select>
-    <br/><br/>
+    <br /><br />
 
-    <button id="submitBuildBtn" type="button" class="btn btn-primary" onclick="submitBuild()" style="margin-left: 15px;">
-        Submit Build</button>
+    <button id="submitEditBuildBtn" type="button" class="btn btn-primary" onclick="submitEditBuild()"
+        style="margin-left: 15px;">
+        Submit Edit</button>
 
-    <script src="createBuildPageScript.js"></script>
+    <script src="./createBuildPageScript.js"></script>
+    <script src="./editBuildPageScript.js"></script>
 </body>
+
 </html>

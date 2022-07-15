@@ -8,9 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.sclass.pages.LoginPage;
 import com.sclass.pages.HomePage;
-
+import com.sclass.pages.LoginPage;
 import com.sclass.runners.UserFeaturesRunner;
 
 import io.cucumber.java.en.Given;
@@ -77,8 +76,8 @@ public class UserFeaturesStepImpl {
 
 	@Then("They are redirected to the PartSearch Page")
 	public void they_are_redirected_to_the_part_search_page() {
-		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Search for Parts"));
-		assertEquals("Search for Parts", driver.getTitle());
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Part Search Page"));
+		assertEquals("Part Search Page", driver.getTitle());
 	}
 
 }
