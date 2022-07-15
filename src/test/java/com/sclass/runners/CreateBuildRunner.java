@@ -32,7 +32,6 @@ public class CreateBuildRunner {
 		loginPage = new LoginPage(driver);
 		userPage = new HomePage(driver);
 		createBuildPage = new CreateBuildPage(driver);
-		
 	}
 
 	@AfterAll
