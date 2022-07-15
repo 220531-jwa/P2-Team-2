@@ -14,7 +14,7 @@ async function getParts() {
     );
     let resJson = await res.json()
         .then((resp) => {
-            if (res.status ===404){
+            if (res.status === 404){
                 alert(resp.message);
             } else {
                 populateDropdowns(resp);
@@ -42,7 +42,7 @@ function populateDropdowns(partsList) {
 
         switch(partType) {
             case('MOBO'):
-                newOption.innerText += ' - ' + part.ramSlots + ' RAM Slots';
+                newOption.innerText;
                 moboSelector.appendChild(newOption);
                 break;
             case('CPU'):
@@ -66,8 +66,6 @@ function populateDropdowns(partsList) {
 }
 
 async function submitBuild() {
-    let submitBtn = document.getElementById('submitBuildBtn');
-    
     nameValue = document.getElementById('nameInput').value;
     moboValue = document.getElementById('motherboardSelector').value;
     cpuValue = document.getElementById('cpuSelector').value;

@@ -3,9 +3,11 @@ package com.sclass.steps;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -24,93 +26,95 @@ public class CreateBuildStepImpl {
 	private LoginPage loginPage = CreateBuildRunner.loginPage;
 	private HomePage userPage = CreateBuildRunner.userPage;
 	private CreateBuildPage createBuildPage = CreateBuildRunner.createBuildPage;
+	
+	@Given("A User is logs in to their account")
+	public void a_user_is_logs_in_to_their_account() {
+		driver.get("http://localhost:8081/loginPage.html");
+		loginPage.usernameInput.sendKeys("elle");
+		loginPage.passwordInput.sendKeys("pass");
+		loginPage.loginButton.click();
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Your Home Page"));
+	}
 
-//	@Given("A User is logged in")
-//	public void a_user_is_logged_in() {
-//		driver.get("http://localhost:8080/home.html");
-//		loginPage.usernameInput.sendKeys("username"); //TODO: change these values
-//		loginPage.passwordInput.sendKeys("password");
-//		loginPage.loginButton.click();
-//		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Your Home Page"));
-//		//		assertEquals("Your Home Page", driver.getTitle());
-//	}
-
-	@Given("on the Create Build Page")
-	public void on_the_create_build_page() {
+	@Given("They click they click the CreateBuild button to create a build")
+	public void they_click_they_click_the_create_build_button_to_create_a_build() {
 		userPage.createBuild.click();
 	}
 
 	@When("A User click the Motherboard Selector")
 	public void a_user_click_the_motherboard_selector() {
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Create New Build"));
-		createBuildPage.motherboardSelector = new Select(driver.findElement(By.id("Motherboard")));
+		createBuildPage.motherboardSelector = new Select(driver.findElement(By.id("motherboardSelector")));
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.numberOfElementsToBeMoreThan(
+				By.xpath("//*[@id='motherboardSelector']/*"), 1));
 		createBuildPage.motherboardSelector.selectByIndex(1);
 	}
-
-	@Then("The User should be able to pick a motherboard")
+	
+	@Then("The User should be able to pick a Motherboard")
 	public void the_user_should_be_able_to_pick_a_motherboard() {
-		
-		assertEquals("1", createBuildPage.motherboardSelector.getFirstSelectedOption().getText());
+		assertEquals("AMD 4-Slot Mobo", createBuildPage.motherboardSelector.getFirstSelectedOption().getText());
 	}
 	
 	@When("A User click the CPU Selector")
 	public void a_user_click_the_cpu_selector() {
-		createBuildPage.cpuSelector = new Select(driver.findElement(By.id("CPU")));
+		createBuildPage.cpuSelector = new Select(driver.findElement(By.id("cpuSelector")));
 		createBuildPage.cpuSelector.selectByIndex(1);
 	}
 
 	@Then("The User should be able to pick a CPU")
 	public void the_user_should_be_able_to_pick_a_cpu() {
-		
-		assertEquals("5", createBuildPage.cpuSelector.getFirstSelectedOption().getText());
+		assertEquals("AMD CPU", createBuildPage.cpuSelector.getFirstSelectedOption().getText());
 	}
 
 	@When("A User click the RAM Selector")
 	public void a_user_click_the_ram_selector() {
-		createBuildPage.ramSelector = new Select(driver.findElement(By.id("RAM")));
+		createBuildPage.ramSelector = new Select(driver.findElement(By.id("ramSelector")));
 		createBuildPage.ramSelector.selectByIndex(1);
 	}
 
 	@Then("The User should be able to pick a RAM")
 	public void the_user_should_be_able_to_pick_a_ram() {
-		
-		assertEquals("7", createBuildPage.ramSelector.getFirstSelectedOption().getText());
-		
+		assertEquals("Generic RAM", createBuildPage.ramSelector.getFirstSelectedOption().getText());
 	}
 
 	@When("A User click the Storage Selector")
 	public void a_user_click_the_storage_selector() {
-		createBuildPage.storageSelector = new Select(driver.findElement(By.id("Storage")));
+		createBuildPage.storageSelector = new Select(driver.findElement(By.id("storageSelector")));
 		createBuildPage.storageSelector.selectByIndex(1);
 	}
 
 	@Then("The User should be able to pick a Storage")
 	public void the_user_should_be_able_to_pick_a_storage() {
-		assertEquals("8", createBuildPage.storageSelector.getFirstSelectedOption().getText());
+		assertEquals("Generic Storage", createBuildPage.storageSelector.getFirstSelectedOption().getText());
 	}
 	
 	@When("A User click the PowerSupply Selector")
 	public void a_user_click_the_power_supply_selector() {
-		createBuildPage.psuSelector = new Select(driver.findElement(By.id("PSU")));
+		createBuildPage.psuSelector = new Select(driver.findElement(By.id("psuSelector")));
 		createBuildPage.psuSelector.selectByIndex(1);
 	}
 
 	@Then("The User should be able to pick a PowerSupply")
 	public void the_user_should_be_able_to_pick_a_power_supply() {
-		assertEquals("9", createBuildPage.psuSelector.getFirstSelectedOption().getText());
+		assertEquals("High Power Supply - 1000W", createBuildPage.psuSelector.getFirstSelectedOption().getText());
 	}
 
 	@When("A User click the Case Selector")
 	public void a_user_click_the_case_selector() {
-		createBuildPage.caseSelector = new Select(driver.findElement(By.id("Case")));
+		createBuildPage.caseSelector = new Select(driver.findElement(By.id("caseSelector")));
 		createBuildPage.caseSelector.selectByIndex(1);
 	}
 
 	@Then("The User should be able to pick a Case")
 	public void the_user_should_be_able_to_pick_a_case() {
-		assertEquals("11", createBuildPage.caseSelector.getFirstSelectedOption().getText());
+		assertEquals("Generic Case", createBuildPage.caseSelector.getFirstSelectedOption().getText());
 	}
 
+	@When("A User fills in the build name")
+	public void a_user_fills_in_the_build_name() {
+	    createBuildPage.nameInput.sendKeys("Create Build Test");
+	}
+	
 	@When("A User clicks on submit build")
 	public void a_user_clicks_on_submit_build() {
 		createBuildPage.submitButton.click();
@@ -120,5 +124,21 @@ public class CreateBuildStepImpl {
 	@Then("They are redirected back to their home page")
 	public void they_are_redirected_back_to_their_home_page() {
 		assertEquals("Your Home Page", driver.getTitle());
+	}
+	
+	@Then("Their new build is listed in the table")
+	public void their_new_build_is_listed_in_the_table() {
+		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.numberOfElementsToBeMoreThan(
+				By.xpath("//*[@id='buildTable']/tbody/tr[last()]/*"), 1));
+		
+		List<WebElement> lastTR = driver.findElements(By.xpath("//*[@id='buildTable']/tbody/tr[last()]/*"));
+		
+		assertEquals("Create Build Test", lastTR.get(1).getText());
+		assertEquals("AMD 4-Slot Mobo", lastTR.get(2).getText());
+		assertEquals("AMD CPU", lastTR.get(3).getText());
+		assertEquals("Generic RAMx2", lastTR.get(4).getText());
+		assertEquals("Generic Storage", lastTR.get(5).getText());
+		assertEquals("High Power Supply", lastTR.get(6).getText());
+		assertEquals("Generic Case", lastTR.get(7).getText());
 	}
 }

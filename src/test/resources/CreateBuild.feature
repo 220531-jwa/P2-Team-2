@@ -20,16 +20,16 @@
 Feature: PC Builder Create Build
  
  Background:
- 	Given A User is logged in
- 	And on the Create Build Page
+ 	Given A User is logs in to their account
+ 	And They click they click the CreateBuild button to create a build
  
   Scenario: A User can Create New Build button
  
+ 	When A User click the Motherboard Selector
+ 	Then The User should be able to pick a Motherboard
+ 	
  	When A User click the CPU Selector
  	Then The User should be able to pick a CPU
- 	
- 	When A User click the Motherboard Selector
- 	Then The User should be able to pick a motherboard
  	
  	When A User click the RAM Selector
  	Then The User should be able to pick a RAM
@@ -37,13 +37,15 @@ Feature: PC Builder Create Build
  	When A User click the Storage Selector
  	Then The User should be able to pick a Storage
  	
- 	When A User click the Case Selector
- 	Then The User should be able to pick a Case
- 	
  	When A User click the PowerSupply Selector
  	Then The User should be able to pick a PowerSupply
+ 	
+ 	When A User click the Case Selector
+ 	Then The User should be able to pick a Case
  
- 	When A User clicks on submit build
+ 	When A User fills in the build name
+ 	And A User clicks on submit build
  	Then They are redirected back to their home page
+ 	And Their new build is listed in the table
 
   
