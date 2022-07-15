@@ -34,7 +34,7 @@ public class CreateBuildPage {
 	
 	public Select caseSelector;
 	
-	@FindBy(id = "submit")
+	@FindBy(id = "submitBuildBtn")
 	public WebElement submitButton;
 	
 }

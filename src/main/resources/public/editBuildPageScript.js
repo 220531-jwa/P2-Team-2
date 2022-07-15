@@ -1,82 +1,88 @@
-let baseUrl = "http://localhost:8081";
+let baseUrl = 'http://localhost:8081';
 
 window.onload = function () {
     // console.log(JSON.parse(sessionStorage.getItem('fetchThis')));
     getParts();
 }
 
-async function getParts() {
+async function editBuild() {
+    let submitBtn = document.getElementById('submitEditBtn');
+
+    buildIdValue = document.getElementById('buildId').value; // If I can't get ID from session
+    nameValue = document.getElementById('nameInput').value;
+    moboValue = document.getElementById('motherboardSelector').value;
+    cpuValue = document.getElementById('cpuSelector').value;
+    ramValue = document.getElementById('ramSelector').value;
+    hasFourRamValue = document.getElementById('hasFourRAMCheckbox').checked;
+    storageValue = document.getElementById('storageSelector').value;
+    psuValue = document.getElementById('psuSelector').value;
+    caseValue = document.getElementById('caseSelector').value;
+
+    nameValue = nameValue.trim();
+
+    if (buildIdValue === 'none') {
+        alert('Select a Motherboard');
+        return;
+    } else
+        // Check if fields are filled
+        if (moboValue === 'none') {
+            alert('Select a Motherboard');
+            return;
+        } else if (cpuValue === 'none') {
+            alert('Select a CPU');
+            return;
+        } else if (ramValue === 'none') {
+            alert('Select RAM');
+            return;
+        } else if (storageValue === 'none') {
+            alert('Select Storage');
+            return;
+        } else if (psuValue === 'none') {
+            alert('Select a PSU');
+            return;
+        } else if (caseValue === 'none') {
+            alert('Select a Case');
+            return;
+        } else if (nameValue === '') {
+            alert('You need a name for a build');
+            return;
+        }
+
+    let user = JSON.parse(sessionStorage.getItem("inUser"));
+
+    let buildEdit = {
+        buildId: buildIdValue,
+        userId: user.userId,
+        buildName: nameValue,
+        moboId: moboValue,
+        cpuId: cpuValue,
+        ramId: ramValue,
+        storageId: storageValue,
+        psuId: psuValue,
+        caseId: caseValue,
+        hasFourRAM: hasFourRamValue
+    };
+
+    let rJson = JSON.stringify(buildEdit);
+
     let res = await fetch(
-        `${baseUrl}/search`,
+        `${baseUrl}/users/${user.id}/builds/${buildIdValue}`,
         {
-            method: 'GET',
-            header: { 'Content-Type': 'application/json' }
+            method: 'PUT',
+            header: { 'Content-Type': 'application/json' },
+            body: rJson
         }
     );
     let resJson = await res.json()
         .then((resp) => {
-            populateDropdowns(resp);
+            if (res.status === 400) {
+                alert(resp.message);
+            } else {
+                window.location.assign("home.html");
+            }
         })
         .catch((error) => {
             console.log(error);
-            alert("Failed to get parts");
+            alert('Failed to create build');
         });
-}
-
-function populateDropdowns(partsList) {
-    let moboSelector = document.getElementById('motherboardSelector');
-    let cpuSelector = document.getElementById('cpuSelector');
-    let ramSelector = document.getElementById('ramSelector');
-    let storageSelector = document.getElementById('storageSelector');
-    let psuSelector = document.getElementById('psuSelector');
-    let caseSelector = document.getElementById('caseSelector');
-
-    for(const part in partsList) {
-        let newOption = document.createElement('option');
-        let partName = part.part_name;
-        newOption.setAttribute("value", part.part_id);
-        newOption.innerText = entry.part_name;
-
-        switch(partName) {
-            case("mobo"):
-                newOption.innerText += " - " + entry.manufacturer + " - " + entry.ram_slots + " RAM Slots";
-                moboSelector.appendChild(newOption);
-                break;
-            case("cpu"):
-                newOption.innerText += " - " + entry.manufacturer;
-                cpuSelector.appendChild(newOption);
-                break;
-            case("ram"):
-                ramSelector.appendChild(newOption);
-                break;
-            case("storage"):
-                newOption.innerText += " - " + entry.manufacturer;
-                storageSelector.appendChild(newOption);
-                break;
-            case("psu"):
-                newOption.innerText += " - " + entry.part_wattage;
-                psuSelector.appendChild(newOption);
-                break;
-            case("case"):
-                caseSelector.appendChild(newOption);
-                break;
-        }
-    }
-}
-
-async function submitBuild() {
-    let submitBtn = document.getElementById('submitBuildBtn');
-    // Get selector values
-    moboValue = document.getElementById("motherboardSelector").value;
-    cpuValue = document.getElementById("cpuSelector").value;
-    ramValue = document.getElementById("ramSelector").value;
-    storageValue = document.getElementById("storageSelector").value;
-    psuValue = document.getElementById("psuSelector").value;
-    caseValue = document.getElementById("caseSelector").value;
-
-
-    // Make sure they have a value
-    // Send request
-    // Redirect to user home page if successful
-    // Display alert if error occurs
 }

@@ -47,7 +47,7 @@ public class BuildService {
 				break;
 			}
 		}
-		
+
 		try {
 			checkCompatibility(mobo, cpu, ram, storage, psu, casePart, hasFourRam);
 		} catch (Exception e) {
@@ -57,7 +57,7 @@ public class BuildService {
 		return buildDao.createBuild(userId, name, moboId, cpuId, ramId, storageId, psuId, caseId, hasFourRam);
 	}
 
-	public void checkCompatibility(Part mobo, Part cpu, Part ram, Part storage, Part psu, Part casePart, 
+	public void checkCompatibility(Part mobo, Part cpu, Part ram, Part storage, Part psu, Part casePart,
 			boolean hasFourRam) throws Exception {
 		// Check if mobo and cpu have same manufacturer
 		if (mobo.getManufacturer() != cpu.getManufacturer()) {
@@ -90,8 +90,12 @@ public class BuildService {
 	public List<Build> getAllBuildsForUser(int userId) {
 		return buildDao.getAllBuildsForUser(userId);
 	}
-	
-	public List<BuildWithNames> getAllBuildsWithNames(int userId){
+
+	public List<BuildWithNames> getAllBuildsWithNames(int userId) {
 		return buildDao.getAllBuildsWithNames(userId);
+	}
+
+	public Build editBuild(Build bodyAsBuild) {
+		return buildDao.editBuild(bodyAsBuild);
 	}
 }
