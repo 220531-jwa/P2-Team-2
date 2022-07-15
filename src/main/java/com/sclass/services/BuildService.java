@@ -95,7 +95,12 @@ public class BuildService {
 		return buildDao.getAllBuildsWithNames(userId);
 	}
 
-	public Build editBuild(Build bodyAsBuild) {
-		return buildDao.editBuild(bodyAsBuild);
+	public Build editBuild(Build bodyAsBuild) throws Exception {
+		Build build = buildDao.getBuildById(bodyAsBuild.getBuildId());
+		if (build == null) {
+			throw new Exception("Build with id " + bodyAsBuild.getBuildId() + " doesn't exist.");
+		} else {
+			return buildDao.editBuild(bodyAsBuild);
+		}
 	}
 }

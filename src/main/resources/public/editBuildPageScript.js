@@ -1,14 +1,12 @@
-let baseUrl = 'http://localhost:8081';
-
 window.onload = function () {
     // console.log(JSON.parse(sessionStorage.getItem('fetchThis')));
     getParts();
 }
 
 async function editBuild() {
-    let submitBtn = document.getElementById('submitEditBtn');
+    // let submitBtn = document.getElementById('submitEditBuild');
 
-    buildIdValue = document.getElementById('buildId').value; // If I can't get ID from session
+    buildIdValue = document.getElementById('buildIdInput').value; // If I can't get ID from session
     nameValue = document.getElementById('nameInput').value;
     moboValue = document.getElementById('motherboardSelector').value;
     cpuValue = document.getElementById('cpuSelector').value;
@@ -21,7 +19,10 @@ async function editBuild() {
     nameValue = nameValue.trim();
 
     if (buildIdValue === 'none') {
-        alert('Select a Motherboard');
+        alert('Select a Build');
+        return;
+    } else if (nameValue === 'none') {
+        alert('Name the Build');
         return;
     } else
         // Check if fields are filled
@@ -52,6 +53,7 @@ async function editBuild() {
 
     let buildEdit = {
         buildId: buildIdValue,
+        buildName: nameValue,
         userId: user.userId,
         buildName: nameValue,
         moboId: moboValue,
@@ -62,6 +64,8 @@ async function editBuild() {
         caseId: caseValue,
         hasFourRAM: hasFourRamValue
     };
+
+    console.log(buildEdit);
 
     let rJson = JSON.stringify(buildEdit);
 
