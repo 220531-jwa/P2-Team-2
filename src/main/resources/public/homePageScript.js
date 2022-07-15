@@ -64,6 +64,7 @@ async function PopulateBuilds(){
             cell7.innerText = entry.caseName;
             cell8.innerText = `$${entry.totalCost}`;
 
+            
             // cell8.innerText = 
 
 
@@ -75,5 +76,12 @@ async function PopulateBuilds(){
             });
                 
     }
+}
+
+function test(){
+    let input = document.getElementById("testIn").value;
+    // sessionStorage.removeItem('fetchThis');
+    sessionStorage.setItem('fetchThis',input);
+    window.location.assign("editBuildPage.html");
 }
 

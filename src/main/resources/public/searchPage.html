@@ -5,11 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Part Search Page</title>
+
+    
+    <style type="text/css">
+        .disabled{text-decoration: line-through;
+            pointer-events: none;
+        color: black;}
+
+    </style>
+
 </head>
-<body>
+<body onload="guestLogin()">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="home.html">Return home</a>
-        <a class="navbar-brand" href="loginPage.html" onclick="logout()">Logout</a>
+        <a id ="home"class="navbar-brand" href="home.html">Return home</a>
+        <a id ="logout" class="navbar-brand" href="loginPage.html" onclick="logout()">Logout</a>
 	</nav>
 
     <div>
@@ -32,6 +41,7 @@
         <button id ="searchButton" type ="button" onclick="searchForParts()">Submit Search</button>
         <br>
         <table id="resultTable">
+           
             <tr>
                <!-- <th>id</th> -->
                <th>Name</th>
@@ -41,6 +51,9 @@
                <th>Manufacturer</th>
                <th>RAM Slots</th>
             </tr>
+            <tbody id="body">
+
+            </tbody>
         </table>
 
     </div>

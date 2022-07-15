@@ -166,7 +166,7 @@ public class PartDAO {
 			int caseId) {
 		List<Part> parts = new ArrayList<>();
 
-		String sql = "select * from parts where part_id = ? or part_id = ? or part_id = ? or part_id = ?"
+		String sql = "select * from pcbuilder.parts where part_id = ? or part_id = ? or part_id = ? or part_id = ?"
 				+ "or part_id = ? or part_id = ?";
 
 		try (Connection conn = cu.getConnection()) {
