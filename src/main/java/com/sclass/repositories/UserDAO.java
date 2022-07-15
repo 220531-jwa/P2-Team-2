@@ -21,7 +21,6 @@ public class UserDAO {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
 			ps.setString(1, username);
-			System.out.println(ps);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				return new User(

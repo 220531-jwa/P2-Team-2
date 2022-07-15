@@ -48,11 +48,8 @@ public class BuildService {
 			}
 		}
 
-		try {
-			checkCompatibility(mobo, cpu, ram, storage, psu, casePart, hasFourRam);
-		} catch (Exception e) {
-			throw e;
-		}
+		// Will throw exception if build doesn't work
+		checkCompatibility(mobo, cpu, ram, storage, psu, casePart, hasFourRam);
 
 		return buildDao.createBuild(userId, name, moboId, cpuId, ramId, storageId, psuId, caseId, hasFourRam);
 	}
@@ -87,15 +84,43 @@ public class BuildService {
 		}
 	}
 
-	public List<Build> getAllBuildsForUser(int userId) {
-		return buildDao.getAllBuildsForUser(userId);
-	}
-
 	public List<BuildWithNames> getAllBuildsWithNames(int userId) {
 		return buildDao.getAllBuildsWithNames(userId);
 	}
 
-	public Build editBuild(Build bodyAsBuild) {
+	public Build editBuild(Build bodyAsBuild) throws Exception {
+		// Get all parts from DB in build
+		List<Part> partsInBuild = partDao.getPartsInBuild(bodyAsBuild.getMoboId(), bodyAsBuild.getCpuId(), 
+				bodyAsBuild.getRamId(), bodyAsBuild.getStorageId(), bodyAsBuild.getPsuId(), bodyAsBuild.getCaseId());
+
+		// Need to parse this list to individual part objects
+		Part mobo = null, cpu = null, ram = null, storage = null, psu = null, casePart = null;
+		for (Part part : partsInBuild) {
+			switch (part.getPartType()) {
+			case MOBO:
+				mobo = part;
+				break;
+			case CPU:
+				cpu = part;
+				break;
+			case RAM:
+				ram = part;
+				break;
+			case STORAGE:
+				storage = part;
+				break;
+			case PSU:
+				psu = part;
+				break;
+			case CASE:
+				casePart = part;
+				break;
+			}
+		}
+
+		// Will throw exception if build doesn't work
+		checkCompatibility(mobo, cpu, ram, storage, psu, casePart, bodyAsBuild.isHasFourRAM());
+
 		return buildDao.editBuild(bodyAsBuild);
 	}
 }

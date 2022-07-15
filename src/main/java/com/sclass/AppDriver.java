@@ -47,7 +47,6 @@ public class AppDriver {
 							put(bc::editBuild);
 						});
 					});
-//					path ("",()->{});
 				});
 			});
 			path("/search", () -> {
