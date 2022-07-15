@@ -42,7 +42,7 @@ async function PopulateBuilds(){
              var cell5 = row.insertCell(5);
              var cell6 = row.insertCell(6);
              var cell7 = row.insertCell(7);
-            //  var cell8 = row.insertCell(8);
+             var cell8 = row.insertCell(8);
              
             cell0.innerText = entry.buildId;
             cell1.innerText = entry.buildName;
@@ -62,8 +62,9 @@ async function PopulateBuilds(){
             cell5.innerText = entry.storageName;
             cell6.innerText = entry.psuName;
             cell7.innerText = entry.caseName;
-            // cell8.innerText = entry.caseId;
+            cell8.innerText = `$${entry.totalCost}`;
 
+            
             // cell8.innerText = 
 
 
@@ -76,4 +77,11 @@ async function PopulateBuilds(){
                 
     }
 }
+
+// function test(){
+//     let input = document.getElementById("testIn").value;
+//     // sessionStorage.removeItem('fetchThis');
+//     sessionStorage.setItem('fetchThis',input);
+//     window.location.assign("editBuildPage.html");
+// }
 

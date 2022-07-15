@@ -23,6 +23,11 @@ async function searchForParts(){
 
     console.log(`min: ${min}`);
     console.log(`max: ${max}`);
+    
+    if (min > max){
+        alert("invalid range!");
+        return;
+    }
     // let typeSelector = document.getElementById("partTypeSelector");
     // let type;
 
@@ -49,7 +54,8 @@ async function searchForParts(){
         }
         console.log(resp);
 
-        let table = document.getElementById("resultTable");
+        let table = document.getElementById("body");
+        table.innerHTML="";
 
         for (const entry of resp){
             var row = table.insertRow(-1);
@@ -77,4 +83,18 @@ async function searchForParts(){
         .catch((error)=>{console.log(error);
             console.log(error);
             });
+}
+function guestLogin(){
+    
+    let foundUser = (sessionStorage.getItem('inUser'));
+    console.log(foundUser);
+    if (foundUser === null){
+        var homeLink = document.getElementById("home");
+        var logLink = document.getElementById("logout");
+
+        homeLink.setAttribute("href","javascript: void(0)");
+        homeLink.classList.add("disabled");
+
+        logLink.innerText = "Go Login!";
+    }
 }
