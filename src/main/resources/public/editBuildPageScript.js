@@ -4,8 +4,6 @@ window.onload = function () {
 }
 
 async function editBuild() {
-    // let submitBtn = document.getElementById('submitEditBuild');
-
     buildIdValue = document.getElementById('buildIdInput').value; // If I can't get ID from session
     nameValue = document.getElementById('nameInput').value;
     moboValue = document.getElementById('motherboardSelector').value;

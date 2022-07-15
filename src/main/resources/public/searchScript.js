@@ -1,12 +1,6 @@
 // let baseUrl = "http://localhost:8081";
 async function searchForParts() {
 
-
-
-
-
-
-
     let min = document.getElementById("priceFloorInput").value;
     if (min.length === 0) {
         min = 0;
@@ -16,9 +10,6 @@ async function searchForParts() {
     if (max.length === 0 || max == 0) {
         max = 99999999.99;
     }
-
-
-
 
     console.log(`min: ${min}`);
     console.log(`max: ${max}`);
@@ -75,9 +66,6 @@ async function searchForParts() {
                 cell5.innerText = entry.ramSlots;
 
             }
-
-
-
         })
 
         .catch((error) => {
