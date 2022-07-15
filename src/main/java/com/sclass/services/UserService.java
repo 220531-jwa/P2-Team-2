@@ -17,6 +17,7 @@ public class UserService {
 	public User login(String username, String pass) {
 
 		User logi = userDao.getUserByUsername(username); 
+		System.out.println(logi);
 		if (logi != null) {
 			if (logi.getPass().equals(pass)) {
 				return logi;

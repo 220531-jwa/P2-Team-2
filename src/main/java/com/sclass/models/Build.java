@@ -12,13 +12,15 @@ public class Build {
 	private int psuId;
 	private int caseId;
 	private boolean hasFourRAM;
-	
-	public Build() {}
-	
-	public Build(int buildId, int userId, String buildName, int moboId, int cpuId, int ramId, int storageId, int psuId, 
+
+	public Build() {
+	}
+
+	public Build(int buildId, int userId, String buildName, int moboId, int cpuId, int ramId, int storageId, int psuId,
 			int caseId, boolean hasFourRAM) {
 		super();
 		this.buildId = buildId;
+		this.userId = userId;
 		this.buildName = buildName;
 		this.moboId = moboId;
 		this.cpuId = cpuId;
@@ -27,7 +29,6 @@ public class Build {
 		this.psuId = psuId;
 		this.caseId = caseId;
 		this.hasFourRAM = hasFourRAM;
-		this.userId = userId;
 	}
 
 	public int getBuildId() {
@@ -112,8 +113,8 @@ public class Build {
 
 	@Override
 	public String toString() {
-		return "Build [buildId=" + buildId + ", buildName=" + buildName + ", moboId=" + moboId + ", cpuId=" + cpuId
-				+ ", ramId=" + ramId + ", storageId=" + storageId + ", psuId=" + psuId + ", caseId=" + caseId
-				+ ", hasFourRAM=" + hasFourRAM + ", userId=" + userId + "]";
+		return "Build [buildId=" + buildId + ", userId=" + userId + ", buildName=" + buildName + ", moboId=" + moboId
+				+ ", cpuId=" + cpuId + ", ramId=" + ramId + ", storageId=" + storageId + ", psuId=" + psuId
+				+ ", caseId=" + caseId + ", hasFourRAM=" + hasFourRAM + "]";
 	}
 }
