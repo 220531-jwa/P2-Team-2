@@ -1,10 +1,22 @@
+
 window.onload = function () {
+
     // console.log(JSON.parse(sessionStorage.getItem('fetchThis')));
-    getParts();
+    await getParts();
+    
+    var x = document.getElementById("motherboardSelector");
+        
+    // console.log(x.options.length);
+    for (let i =0; i < x.options.length; i++){
+        console.log(x.options[i].value);
+
+    }
 }
+
 
 async function editBuild() {
     buildIdValue = document.getElementById('buildIdInput').value; // If I can't get ID from session
+
     nameValue = document.getElementById('nameInput').value;
     moboValue = document.getElementById('motherboardSelector').value;
     cpuValue = document.getElementById('cpuSelector').value;
@@ -23,6 +35,7 @@ async function editBuild() {
         alert('Name the Build');
         return;
     } else
+    
         // Check if fields are filled
         if (moboValue === 'none') {
             alert('Select a Motherboard');

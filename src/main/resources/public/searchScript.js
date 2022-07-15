@@ -14,19 +14,15 @@ async function searchForParts() {
     console.log(`min: ${min}`);
     console.log(`max: ${max}`);
 
-    if ((max - min) < 0) {
+
+    
+    console.log((min)>(max));
+    if ((max - min) <0){
         alert("invalid range!");
         return;
     }
+   
 
-    // let typeSelector = document.getElementById("partTypeSelector");
-    // let type;
-
-    // if (typeSelector.options[typeSelector.selectedIndex].value == 'ALL'){
-    //     // console.log('nice');
-
-    // }
-    // console.log(typeSelector.options[typeSelector.selectedIndex].value);
 
     let res = await fetch(
         `${baseUrl}/search?priceFloor=${min}&priceCeiling=${max}`,
