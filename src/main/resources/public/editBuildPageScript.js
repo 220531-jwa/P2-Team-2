@@ -1,7 +1,7 @@
 let baseUrl = "http://localhost:8081";
 
 window.onload = function () {
-    console.log(JSON.parse(sessionStorage.getItem('fetchThis')));
+    // console.log(JSON.parse(sessionStorage.getItem('fetchThis')));
     getParts();
 }
 

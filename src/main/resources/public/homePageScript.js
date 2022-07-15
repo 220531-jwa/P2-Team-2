@@ -78,10 +78,10 @@ async function PopulateBuilds(){
     }
 }
 
-function test(){
-    let input = document.getElementById("testIn").value;
-    // sessionStorage.removeItem('fetchThis');
-    sessionStorage.setItem('fetchThis',input);
-    window.location.assign("editBuildPage.html");
-}
+// function test(){
+//     let input = document.getElementById("testIn").value;
+//     // sessionStorage.removeItem('fetchThis');
+//     sessionStorage.setItem('fetchThis',input);
+//     window.location.assign("editBuildPage.html");
+// }
 
