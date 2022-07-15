@@ -103,4 +103,15 @@ public class BuildService {
 			return buildDao.editBuild(bodyAsBuild);
 		}
 	}
+
+	public BuildWithNames getSingleBuild(int buildId) throws Exception {
+		
+		BuildWithNames build = buildDao.getSingleBuildWithNames(buildId);
+		if (build == null) {
+			throw new Exception("Build with id " + buildId + " doesn't exist.");
+		} else {
+			System.out.println(build);
+			return build;
+		}
+	}
 }

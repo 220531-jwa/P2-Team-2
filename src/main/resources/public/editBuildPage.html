@@ -11,6 +11,9 @@
 </head>
 
 <body>
+
+    
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a id ="home" class="navbar-brand" href="home.html">Return home</a>
         <a id ="logout" class="navbar-brand" href="loginPage.html" onclick="logout()">Logout</a>
@@ -18,11 +21,29 @@
     <br />
 
     <h2>Edit Build Page</h2>
-    <br />
-
-    <label for="buildIdInput">Build ID:</label>
+    <h3>Your selected build for edit:</h3>
+    <table id="buildTable">
+        <thead>
+            <tr>
+                <!-- <th>ID</th> -->
+                <th>Name</th>
+                <th>Motherboard</th>
+                <th>CPU</th>
+                <th>RAM</th>
+                <!-- <th>4 ram sticks?</th> -->
+                <th>Storage</th>
+                <th>PSU</th>
+                <th>Case</th>
+                <th>Total Cost</th>
+                <!-- <th>owner</th> -->
+            </tr>
+        </thead>
+        <tbody id="buildTableBody"></tbody>
+    </table>
+<br>
+    <!-- <label for="buildIdInput">Build ID:</label>
     <input type="number" min="1" id="buildIdInput">        
-    <br /><br />
+    <br /><br /> -->
 
     <label for="nameInput">Build Name:</label>
     <input type="text" id="nameInput">        
