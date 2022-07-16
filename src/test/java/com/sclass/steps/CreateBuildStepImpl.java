@@ -31,7 +31,7 @@ public class CreateBuildStepImpl {
 	@Given("A User is logs in to their account")
 	public void a_user_is_logs_in_to_their_account() {
 		driver.get("http://localhost:8081/loginPage.html");
-		loginPage.usernameInput.sendKeys("elle");
+		loginPage.usernameInput.sendKeys("kpro");
 		loginPage.passwordInput.sendKeys("pass");
 		loginPage.loginButton.click();
 		new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.titleContains("Your Home Page"));
