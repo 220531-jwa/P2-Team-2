@@ -35,25 +35,25 @@ async function PopulateBuilds(){
              var row = table.insertRow(-1);
 
              var cell0 = row.insertCell(0);
-             cell0.id='Build ID';
+             
              var cell1 = row.insertCell(1);
-             cell1.id='Build Name';
+         
              var cell2 = row.insertCell(2);
-             cell2.id='Motherboard';
+ 
              var cell3 = row.insertCell(3);
-             cell3.id='CPU';
+
              var cell4 = row.insertCell(4);
-             cell4.id='RAM';
+
              var cell5 = row.insertCell(5);
-             cell5.id='Storage';
+
              var cell6 = row.insertCell(6);
-             cell6.id='PSU';
+
              var cell7 = row.insertCell(7);
-             cell7.id='Case';
+
              var cell8 = row.insertCell(8);
-             cell8.id='Total Cost';
+   
              var cell9 = row.insertCell(9);
-             cell9.id='Edit Build';
+       
 
              
             cell0.innerText = entry.buildId;

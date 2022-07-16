@@ -11,14 +11,16 @@ public class UserService {
 		this.userDao = userDao;
 	}
 
-	public User login(String username, String pass) {
+	public User login(String username, String pass) throws Exception {
 		User logi = userDao.getUserByUsername(username); 
 		if (logi != null) {
 			if (logi.getPass().equals(pass)) {
 				return logi;
 			}
+			else throw new Exception("Your password is incorrect!");
 		}
-		return null;
+		else throw new Exception("No User with that name found!");
+//		return null;
 	}
 
 
