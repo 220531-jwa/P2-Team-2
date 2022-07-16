@@ -28,21 +28,33 @@ async function PopulateBuilds(){
         .then((resp) =>{
             console.log(resp);
 
-            let table = document.getElementById("buildTable");
+            let table = document.getElementById("buildTableBody");
 
-             for (const entry of resp){
+             for (let entry of resp){
 
-             var row = table.insertRow(-1);   
+             var row = table.insertRow(-1);
 
              var cell0 = row.insertCell(0);
+             cell0.id='Build ID';
              var cell1 = row.insertCell(1);
+             cell1.id='Build Name';
              var cell2 = row.insertCell(2);
+             cell2.id='Motherboard';
              var cell3 = row.insertCell(3);
+             cell3.id='CPU';
              var cell4 = row.insertCell(4);
+             cell4.id='RAM';
              var cell5 = row.insertCell(5);
+             cell5.id='Storage';
              var cell6 = row.insertCell(6);
+             cell6.id='PSU';
              var cell7 = row.insertCell(7);
+             cell7.id='Case';
              var cell8 = row.insertCell(8);
+             cell8.id='Total Cost';
+             var cell9 = row.insertCell(9);
+             cell9.id='Edit Build';
+
              
             cell0.innerText = entry.buildId;
             cell1.innerText = entry.buildName;
@@ -51,10 +63,10 @@ async function PopulateBuilds(){
 
             let ramy = entry.ramName;
             if (!entry.hasFourRAM)
-                {ramy +="x2"
+                {ramy +=" x2"
             }
             else{
-                ramy +="x4"
+                ramy +=" x4"
             }
             cell4.innerText = ramy;
             
@@ -62,11 +74,8 @@ async function PopulateBuilds(){
             cell5.innerText = entry.storageName;
             cell6.innerText = entry.psuName;
             cell7.innerText = entry.caseName;
-            cell8.innerText = `$${entry.totalCost}`;
-
-            
-            // cell8.innerText = 
-
+            cell8.innerText = `$${entry.totalCost.toFixed(2)}`;
+            cell9.innerHTML = `<button type='button' class='btn btn-primary' onclick='update(this)'>Edit</button>`;
 
              }  
         })
@@ -76,6 +85,21 @@ async function PopulateBuilds(){
             });
                 
     }
+}
+
+
+
+function update(cell) {
+    let rowNum = cell.closest("tr").rowIndex;
+    let getId = document.getElementById("buildTable").rows[rowNum].cells[0].innerHTML;
+
+   
+    
+    sessionStorage.setItem("fetchThis", JSON.stringify(getId));
+    // console.log(getId);
+    //  console.log(JSON.parse(sessionStorage.getItem('fetchThis')));
+    window.location.assign("editBuildPage.html");
+
 }
 
 // function test(){

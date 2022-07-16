@@ -94,5 +94,7 @@ public class UserServiceTests {
 
 		assertEquals("A user with this name already exists!", thrown.getMessage());
 	}
+	
+	
 
 }

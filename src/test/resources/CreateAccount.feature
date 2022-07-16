@@ -23,12 +23,11 @@ Feature: PC Builder Create Account
 	Given A User is on the Home page
 
   Scenario: A User can create a new account
-    When A User types in a new "<username>" and "<password>" into the login form and clicks create account button
+    When A User types in a new username and password into the login form and clicks create account button
     #Then The User should receive a success message
     Then The User should be on their account page
 
-    Examples: 
-     | username	 | password	 |
-     | Y	 | N  |
-     #| three | pass  |
-     #| four  | pass  |
+    #Examples: 
+     #| username	 | password	 |
+     #| Y	 | N  |
+   

@@ -2,3 +2,19 @@
 table, th, td {
     border:1px solid black;
 }
+
+.disabled{text-decoration: line-through;
+    pointer-events: none;
+color: black;}
+
+.default{ background-color: lightgreen;
+
+}
+
+
+
+
+
+
+
+
