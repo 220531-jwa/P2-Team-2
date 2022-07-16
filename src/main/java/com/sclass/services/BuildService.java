@@ -48,11 +48,8 @@ public class BuildService {
 			}
 		}
 
-		try {
-			checkCompatibility(mobo, cpu, ram, storage, psu, casePart, hasFourRam);
-		} catch (Exception e) {
-			throw e;
-		}
+		// Will throw exception if build doesn't work
+		checkCompatibility(mobo, cpu, ram, storage, psu, casePart, hasFourRam);
 
 		return buildDao.createBuild(userId, name, moboId, cpuId, ramId, storageId, psuId, caseId, hasFourRam);
 	}
@@ -85,10 +82,6 @@ public class BuildService {
 		} else {
 			return build;
 		}
-	}
-
-	public List<Build> getAllBuildsForUser(int userId) {
-		return buildDao.getAllBuildsForUser(userId);
 	}
 
 	public List<BuildWithNames> getAllBuildsWithNames(int userId) {
@@ -127,17 +120,8 @@ public class BuildService {
 				}
 			}
 
+			checkCompatibility(mobo, cpu, ram, storage, psu, casePart, bodyAsBuild.isHasFourRAM());
 			
-			
-			try {
-				
-				checkCompatibility(mobo, cpu, ram, storage, psu, casePart, bodyAsBuild.isHasFourRAM());
-				
-				
-			} catch (Exception e) {
-				throw e;
-			}
-
 			return buildDao.editBuild(bodyAsBuild);
 		}
 	}
