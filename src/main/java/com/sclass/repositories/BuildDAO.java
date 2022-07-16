@@ -184,6 +184,49 @@ public class BuildDAO {
 		return null;
 
 	}
+	
+	public List<Build> getOtherUserBuilds(int selfId) {
+		String sql = "SELECT\r\n"
+				+ "    build_id,\r\n"
+				+ "    user_id,\r\n"
+				+ "    build_name,\r\n"
+				+ "    build_mobo,\r\n"
+				+ "    build_cpu,\r\n"
+				+ "    build_ram,\r\n"
+				+ "    build_storage,\r\n"
+				+ "    build_power_supply,\r\n"
+				+ "    build_case,\r\n"
+				+ "    build_has_four_ram\r\n"
+				+ "FROM\r\n"
+				+ "    pcbuilder.builds\r\n"
+				+ "WHERE\r\n"
+				+ "    user_id != ?;";
+		
+		try (Connection conn = cu.getConnection()){
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, selfId);
+			
+			ResultSet rs = ps.executeQuery();
+			List<Build> name = new ArrayList<>();
+			while (rs.next()) {
+				
+				
+				name.add(new Build(rs.getInt("build_id"), rs.getInt("user_id"), rs.getString("build_name"),
+						rs.getInt("build_mobo"), rs.getInt("build_cpu"), rs.getInt("build_ram"),
+						rs.getInt("build_storage"), rs.getInt("build_power_supply"), rs.getInt("build_case"),
+						rs.getBoolean("build_has_four_ram")));
+				
+			}
+			return name;
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+					
+				
+		return null;
+	}
 //select build_id, build_name, mobo.part_name as mobo_name, cpu.part_name as cpu_name, ram.part_name as ram_name,
 //stor.part_name as storage_name, psu.part_name as psu_name, cas.part_name as case_name, build_has_four_ram
 //	from pcbuilder.builds bt

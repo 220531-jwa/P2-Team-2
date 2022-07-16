@@ -66,5 +66,30 @@ public class BuildController {
 		}
 
 	}
+	public void getOtherUserBuilds (Context ctx) {
 
+		int id = Integer.parseInt(ctx.pathParam("id"));
+
+		List<Build> builds = bs.getOtherUserBuilds(id);
+
+		if (builds == null) {
+
+		ctx.status(400);
+		}
+
+		else if (builds.isEmpty()) {
+
+		ctx.json(builds);
+		ctx.status(404);
+
+		}
+
+		else {
+
+		ctx.json(builds);
+		ctx.status(200);
+
+		}
+
+	}
 }
