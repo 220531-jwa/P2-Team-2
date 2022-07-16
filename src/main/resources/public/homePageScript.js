@@ -74,7 +74,7 @@ async function PopulateBuilds(){
             cell5.innerText = entry.storageName;
             cell6.innerText = entry.psuName;
             cell7.innerText = entry.caseName;
-            cell8.innerText = `$${entry.totalCost}`;
+            cell8.innerText = `$${entry.totalCost.toFixed(2)}`;
             cell9.innerHTML = `<button type='button' class='btn btn-primary' onclick='update(this)'>Edit</button>`;
 
              }  

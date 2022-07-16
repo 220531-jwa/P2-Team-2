@@ -11,8 +11,8 @@ async function searchForParts() {
         max = 99999999.99;
     }
 
-    console.log(`min: ${min}`);
-    console.log(`max: ${max}`);
+    // console.log(`min: ${min}`);
+    // console.log(`max: ${max}`);
 
 
     
@@ -56,7 +56,7 @@ async function searchForParts() {
 
                 cell0.innerText = entry.partName;
                 cell1.innerText = entry.partId;
-                cell2.innerText = entry.partPrice;
+                cell2.innerText = `$${entry.partPrice.toFixed(2)}`;
                 cell3.innerText = entry.partWattage;
                 cell4.innerText = entry.manufacturer;
                 cell5.innerText = entry.ramSlots;
