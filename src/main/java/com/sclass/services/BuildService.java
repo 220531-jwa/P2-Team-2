@@ -100,6 +100,44 @@ public class BuildService {
 		if (build == null) {
 			throw new Exception("Build with id " + bodyAsBuild.getBuildId() + " doesn't exist.");
 		} else {
+			List<Part> partsInBuild = partDao.getPartsInBuild(bodyAsBuild.getMoboId(), bodyAsBuild.getCpuId(), 
+					bodyAsBuild.getRamId(), bodyAsBuild.getStorageId(), bodyAsBuild.getPsuId(), bodyAsBuild.getCaseId());
+			
+			Part mobo = null, cpu = null, ram = null, storage = null, psu = null, casePart = null;
+			for (Part part : partsInBuild) {
+				switch (part.getPartType()) {
+				case MOBO:
+					mobo = part;
+					break;
+				case CPU:
+					cpu = part;
+					break;
+				case RAM:
+					ram = part;
+					break;
+				case STORAGE:
+					storage = part;
+					break;
+				case PSU:
+					psu = part;
+					break;
+				case CASE:
+					casePart = part;
+					break;
+				}
+			}
+
+			
+			
+			try {
+				
+				checkCompatibility(mobo, cpu, ram, storage, psu, casePart, bodyAsBuild.isHasFourRAM());
+				
+				
+			} catch (Exception e) {
+				throw e;
+			}
+
 			return buildDao.editBuild(bodyAsBuild);
 		}
 	}
