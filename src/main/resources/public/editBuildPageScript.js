@@ -16,16 +16,18 @@ window.onload = async function () {
 
      let resJson = await res.json()
      .then((resp) =>{
+
+        //test
+
+
+
+        //end test
         console.log(resp);
-
+        document.getElementById("nameInput").value = resp.buildName;
         let table = document.getElementById("buildTableBody");
-        // let rowcounter = 1;
-        // let datacounter = 1;
-
-        //  for (let entry of resp){
-
+        
          var row = table.insertRow(-1);
-        //  row.id = ("build" + rowcounter);   
+      
 
          var cell0 = row.insertCell(0);
          cell0.id='Build ID';
@@ -45,10 +47,7 @@ window.onload = async function () {
          cell7.id='Case';
          var cell8 = row.insertCell(8);
          cell8.id='Total Cost';
-        //  var cell9 = row.insertCell(9);
-        //  cell9.id='Edit Build';
-
-        //  rowcounter++;
+        
          
         cell0.innerText = resp.buildId;
         cell1.innerText = resp.buildName;
@@ -69,9 +68,7 @@ window.onload = async function () {
         cell6.innerText = resp.psuName;
         cell7.innerText = resp.caseName;
         cell8.innerText = `$${resp.totalCost}`;
-        // cell9.innerHTML = `<button type='button' class='btn btn-primary' onclick='update(this)'>Edit</button>`;
-
-        //  }  
+        
     })
 
     .catch((error)=>{console.log(error);

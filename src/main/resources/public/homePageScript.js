@@ -29,13 +29,10 @@ async function PopulateBuilds(){
             console.log(resp);
 
             let table = document.getElementById("buildTableBody");
-            // let rowcounter = 1;
-            // let datacounter = 1;
 
              for (let entry of resp){
 
              var row = table.insertRow(-1);
-            //  row.id = ("build" + rowcounter);   
 
              var cell0 = row.insertCell(0);
              cell0.id='Build ID';
@@ -58,7 +55,6 @@ async function PopulateBuilds(){
              var cell9 = row.insertCell(9);
              cell9.id='Edit Build';
 
-            //  rowcounter++;
              
             cell0.innerText = entry.buildId;
             cell1.innerText = entry.buildName;
@@ -97,19 +93,7 @@ function update(cell) {
     let rowNum = cell.closest("tr").rowIndex;
     let getId = document.getElementById("buildTable").rows[rowNum].cells[0].innerHTML;
 
-    // let buildEdit = {
-    //     buildId: document.getElementById(""),
-    //     buildName: nameValue,
-    //     userId: user.userId,
-    //     buildName: nameValue,
-    //     moboId: moboValue,
-    //     cpuId: cpuValue,
-    //     ramId: ramValue,
-    //     storageId: storageValue,
-    //     psuId: psuValue,
-    //     caseId: caseValue,
-    //     hasFourRAM: hasFourRamValue
-    // };
+   
     
     sessionStorage.setItem("fetchThis", JSON.stringify(getId));
     // console.log(getId);
