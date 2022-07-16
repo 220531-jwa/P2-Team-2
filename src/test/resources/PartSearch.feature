@@ -31,7 +31,6 @@ Feature: Part Search
     Examples:
     |pricefloor	|priceceiling	|
     |50					|150					|
-    |						|							|
     |0					|0						|
 
 

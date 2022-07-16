@@ -38,7 +38,7 @@ function populateDropdowns(partsList) {
         let partType = part.partType;
         let newOption = document.createElement('option');
         newOption.setAttribute('value', part.partId);
-        newOption.innerText = part.partName;
+        newOption.innerText = `$${part.partPrice} ${part.partName}`;
 
         switch(partType) {
             case('MOBO'):
@@ -64,6 +64,8 @@ function populateDropdowns(partsList) {
         }
     }
 }
+
+
 
 async function submitBuild() {
     nameValue = document.getElementById('nameInput').value;

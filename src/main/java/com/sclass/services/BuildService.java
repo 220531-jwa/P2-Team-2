@@ -89,38 +89,51 @@ public class BuildService {
 	}
 
 	public Build editBuild(Build bodyAsBuild) throws Exception {
-		// Get all parts from DB in build
-		List<Part> partsInBuild = partDao.getPartsInBuild(bodyAsBuild.getMoboId(), bodyAsBuild.getCpuId(), 
-				bodyAsBuild.getRamId(), bodyAsBuild.getStorageId(), bodyAsBuild.getPsuId(), bodyAsBuild.getCaseId());
-
-		// Need to parse this list to individual part objects
-		Part mobo = null, cpu = null, ram = null, storage = null, psu = null, casePart = null;
-		for (Part part : partsInBuild) {
-			switch (part.getPartType()) {
-			case MOBO:
-				mobo = part;
-				break;
-			case CPU:
-				cpu = part;
-				break;
-			case RAM:
-				ram = part;
-				break;
-			case STORAGE:
-				storage = part;
-				break;
-			case PSU:
-				psu = part;
-				break;
-			case CASE:
-				casePart = part;
-				break;
+		Build build = buildDao.getBuildById(bodyAsBuild.getBuildId());
+		if (build == null) {
+			throw new Exception("Build with id " + bodyAsBuild.getBuildId() + " doesn't exist.");
+		} else {
+			List<Part> partsInBuild = partDao.getPartsInBuild(bodyAsBuild.getMoboId(), bodyAsBuild.getCpuId(), 
+					bodyAsBuild.getRamId(), bodyAsBuild.getStorageId(), bodyAsBuild.getPsuId(), bodyAsBuild.getCaseId());
+			
+			Part mobo = null, cpu = null, ram = null, storage = null, psu = null, casePart = null;
+			for (Part part : partsInBuild) {
+				switch (part.getPartType()) {
+				case MOBO:
+					mobo = part;
+					break;
+				case CPU:
+					cpu = part;
+					break;
+				case RAM:
+					ram = part;
+					break;
+				case STORAGE:
+					storage = part;
+					break;
+				case PSU:
+					psu = part;
+					break;
+				case CASE:
+					casePart = part;
+					break;
+				}
 			}
+
+			checkCompatibility(mobo, cpu, ram, storage, psu, casePart, bodyAsBuild.isHasFourRAM());
+			
+			return buildDao.editBuild(bodyAsBuild);
 		}
+	}
 
-		// Will throw exception if build doesn't work
-		checkCompatibility(mobo, cpu, ram, storage, psu, casePart, bodyAsBuild.isHasFourRAM());
-
-		return buildDao.editBuild(bodyAsBuild);
+	public BuildWithNames getSingleBuild(int buildId) throws Exception {
+		
+		BuildWithNames build = buildDao.getSingleBuildWithNames(buildId);
+		if (build == null) {
+			throw new Exception("Build with id " + buildId + " doesn't exist.");
+		} else {
+			System.out.println(build);
+			return build;
+		}
 	}
 }

@@ -80,5 +80,21 @@ public class BuildController {
 		}
 
 	}
+	
+	public void getSingleBuild(Context ctx) {
+		int buildId =Integer.parseInt(ctx.pathParam("buildId"));
+		
+		try {
+			BuildWithNames returnit = bs.getSingleBuild(buildId);
+			ctx.json(returnit);
+			ctx.status(200);
+		} catch (Exception e) {
+			// turn the message into an alert on the page
+			ctx.status(404);
+			e.printStackTrace();
+		}
+		
+		
+	}
 
 }

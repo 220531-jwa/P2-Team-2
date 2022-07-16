@@ -123,6 +123,67 @@ public class BuildDAO {
 		return null;
 	}
 	
+	
+	public  BuildWithNames getSingleBuildWithNames(int buildId){
+//		List <BuildWithNames> builds = new ArrayList<>();
+
+		String sql = "select build_id, build_name, mobo.part_name as mobo_name, mobo.part_price as price1,"
+				+ " cpu.part_name as cpu_name, cpu.part_price as price2,"
+				+ " ram.part_name as ram_name, ram.part_price as price3, " +
+				"stor.part_name as storage_name, stor.part_price as price4,"
+				+ " psu.part_name as psu_name, psu.part_price as price5,"
+				+ " cas.part_name as case_name, cas.part_price as price6,"
+				+ " build_has_four_ram from pcbuilder.builds bt" +
+				" left outer join pcbuilder.parts mobo on bt.build_mobo = mobo.part_id" +
+				" left outer join pcbuilder.parts cpu on bt.build_cpu = cpu.part_id" +
+				" left outer join pcbuilder.parts ram on bt.build_ram = ram.part_id" +
+				" left outer join pcbuilder.parts stor on bt.build_storage = stor.part_id" +
+				" left outer join pcbuilder.parts psu on bt.build_power_supply = psu.part_id" +
+				" left outer join pcbuilder.parts cas on bt.build_case = cas.part_id" +
+				" where build_id = ?";
+
+		try (Connection conn = cu.getConnection()){
+			PreparedStatement ps = conn.prepareStatement(sql);
+
+			ps.setInt(1, buildId);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				
+				double price = rs.getDouble("price1") +
+						rs.getDouble("price2") +
+						rs.getDouble("price3") +
+						rs.getDouble("price4") +
+						rs.getDouble("price5") +
+						rs.getDouble("price6");
+				
+				BuildWithNames b = new BuildWithNames(
+						rs.getInt("build_id"),
+						rs.getString("build_name"),
+						rs.getString("mobo_name"),
+						rs.getString("cpu_name"),
+						rs.getString("ram_name"),
+						rs.getString("storage_name"),
+						rs.getString("psu_name"),
+						rs.getString("case_name"),
+						rs.getBoolean("build_has_four_ram"),
+						price
+						);
+//				builds.add(b);
+//				
+				System.out.println(b);
+				return b;
+			}
+			
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
 	public Build editBuild(Build bodyAsBuild) {
 
 		String sql = "update pcbuilder.builds set build_id = ?, user_id = ?, build_name = ?, build_mobo = ?, build_cpu = ?, build_ram = ?, build_storage = ?, build_power_supply = ?, build_case = ?, build_has_four_ram = ? where build_id = ? returning *";

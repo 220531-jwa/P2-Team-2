@@ -45,6 +45,7 @@ public class AppDriver {
 						post(bc::createBuild);
 						path("/{buildId}", () -> {
 							put(bc::editBuild);
+							get(bc::getSingleBuild);
 						});
 					});
 				});

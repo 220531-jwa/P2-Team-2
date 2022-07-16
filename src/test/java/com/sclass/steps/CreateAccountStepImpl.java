@@ -28,9 +28,11 @@ public class CreateAccountStepImpl {
 //		driver.get("http://localhost:8080/home.html");
 //	}
 
-	@When("A User types in a new {string} and {string} into the login form and clicks create account button")
-	public void a_user_types_in_a_new_and_into_the_login_form_and_clicks_create_account_button(String username,
-			String password) {
+	@When ("A User types in a new username and password into the login form and clicks create account button")
+	public void a_user_types_in_a_new_and_into_the_login_form_and_clicks_create_account_button() {
+		String username = String.valueOf(Math.random());
+		String password = String.valueOf(Math.random());
+		
 		loginPage.usernameInput.sendKeys(username);
 		loginPage.passwordInput.sendKeys(password);
 		loginPage.createAccountButton.click();
