@@ -1,8 +1,23 @@
+//test
+
+function changeColor(selected){
+    // console.log(selected.value.classList.contains("default"));
+    // if (selected.option.classList.contains("default")){
+    //     console.log("BRO");
+    // }
+
+    
+
+}
+
+//end test
+
+
 
 window.onload = async function () {
     let user = JSON.parse(sessionStorage.getItem("inUser"));
     let getIt =JSON.parse(sessionStorage.getItem('fetchThis'))
-    console.log(getIt);
+    // console.log(getIt);
      getParts();
     
      let res = await fetch(`
@@ -19,11 +34,23 @@ window.onload = async function () {
 
         //test
 
+       
 
+
+        // document.getElementById("nameInput").value = resp.buildName;
+        // var moboSel = document.getElementById("motherboardSelector");
+        // for (let i = 0; i < moboSel.length; i++){
+        //     // console.log(moboSel.options[i].innerText);
+        //     if (moboSel.options[i].innerText ===resp.moboName){
+        //         moboSel.options[i].selected = true;
+        //         moboSel.options[i].classList.add("default");
+                
+        //     }
+        // }
 
         //end test
-        console.log(resp);
-        document.getElementById("nameInput").value = resp.buildName;
+        // console.log(resp);
+        
         let table = document.getElementById("buildTableBody");
         
          var row = table.insertRow(-1);
@@ -51,6 +78,8 @@ window.onload = async function () {
          
         cell0.innerText = resp.buildId;
         cell1.innerText = resp.buildName;
+      
+        
         cell2.innerText = resp.moboName;
         cell3.innerText = resp.cpuName;
 
@@ -68,7 +97,31 @@ window.onload = async function () {
         cell6.innerText = resp.psuName;
         cell7.innerText = resp.caseName;
         cell8.innerText = `$${resp.totalCost}`;
-        
+         document.getElementById("nameInput").value = resp.buildName;
+        colorize(document.getElementById("motherboardSelector"),resp.moboName);
+        colorize(document.getElementById("cpuSelector"),resp.cpuName);
+        colorize(document.getElementById("ramSelector"),resp.ramName);
+        colorize(document.getElementById("storageSelector"),resp.storageName);
+        colorize(document.getElementById("psuSelector"),resp.psuName);
+        colorize(document.getElementById("caseSelector"),resp.caseName);
+        if (resp.hasFourRAM){
+            document.getElementById("hasFourRAMCheckbox").checked = true;
+        }
+
+        function colorize(thisSel, thisData){
+            console.log(`thisSel:${thisSel}`);
+            console.log(`thisData:${thisData}`);
+            for (let i = 0; i < thisSel.length; i++){
+                // console.log(moboSel.options[i].innerText);
+                console.log(thisSel.innerText);
+                // if (thisSel.options[i].innerText ===thisData)
+                if (thisSel.options[i].innerText.includes(thisData)){
+                    thisSel.options[i].selected = true;
+                    thisSel.options[i].classList.add("default");
+                    
+                }
+        }
+        }
     })
 
     .catch((error)=>{console.log(error);
