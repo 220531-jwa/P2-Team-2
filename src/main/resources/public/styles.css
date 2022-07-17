@@ -12,6 +12,10 @@ a {
    color:rgba(252, 188, 105, 0.842) 
 }
 
+a:hover {
+    color:rgba(56, 214, 241, 0.842)
+}
+
 button {
     opacity: 1;
     
