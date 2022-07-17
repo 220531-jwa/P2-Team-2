@@ -20,7 +20,7 @@ public class AppDriver {
 	public static void main(String[] args) {
 		UserController uc = new UserController(new UserService(new UserDAO()));
 		PartController pc = new PartController(new PartService(new PartDAO()));
-		BuildController bc = new BuildController(new BuildService(new BuildDAO()));
+		BuildController bc = new BuildController(new BuildService(new BuildDAO(), new PartDAO()));
 
 		Javalin app = Javalin.create(config -> {
 			config.enableCorsForAllOrigins();
