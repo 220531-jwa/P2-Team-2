@@ -1,4 +1,56 @@
+body {
+    background-image: linear-gradient(to right, #434343 0%, black 100%);
+    color:rgb(110, 220, 240);
+    text-shadow:
+   -1px -1px 0 #800808,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
+}
+
+a {
+   color:rgba(252, 188, 105, 0.842) 
+}
+
+a:hover {
+    color:rgba(56, 214, 241, 0.842)
+}
+
+button {
+    opacity: 1;
+    
+}
+
+br:hover{
+    opacity:2;
+}
+
+button:hover {
+    opacity: 2;
+    color: rgb(69, 224, 199);
+}
 
 table, th, td {
-    border:1px solid black;
+    border:1px solid rgb(134, 193, 231);
 }
+
+label{
+    background-color: rgb(72, 6, 78);
+}
+
+.disabled{text-decoration: line-through;
+    pointer-events: none;
+color: rgb(79, 227, 238);}
+
+.default{ background-color: rgba(15, 55, 165, 0.664);
+
+}
+
+
+
+
+
+
+
+
+

@@ -36,9 +36,16 @@ public class UserServiceTests {
 
 		when(userDaoMock.getUserByUsername(anyString())).thenReturn(mockUser);
 
-		User loggedInUser = userService.login("username", "pass");
+		User loggedInUser;
+		try {
+			loggedInUser = userService.login("username", "pass");
+			assertEquals(mockUser, loggedInUser);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		assertEquals(mockUser, loggedInUser);
+		
 	}
 
 	@Test
@@ -46,9 +53,13 @@ public class UserServiceTests {
 
 		when(userDaoMock.getUserByUsername(anyString())).thenReturn(null);
 
-		User loggedInUser = userService.login("username", "pa$$word");
+//		User loggedInUser;
+		Exception thrown = assertThrows(Exception.class, ()->{
+			userService.login("username", "pa$$word");
+		});
+		
 
-		assertEquals(null, loggedInUser);
+		assertEquals("No User with that name found!", thrown.getMessage());
 	}
 
 	@Test
@@ -58,9 +69,12 @@ public class UserServiceTests {
 
 		when(userDaoMock.getUserByUsername(anyString())).thenReturn(mockUser);
 
-		User loggedInUser = userService.login("username", "pa$$word");
-
-		assertEquals(null, loggedInUser);
+		Exception thrown = assertThrows(Exception.class, ()->{
+			userService.login("username", "pa$$word");
+		});
+//		User loggedInUser = userService.login("username", "pa$$word");
+		assertEquals("Your password is incorrect!", thrown.getMessage());
+//		assertEquals(null, loggedInUser);
 	}
 
 	@Test
@@ -94,5 +108,7 @@ public class UserServiceTests {
 
 		assertEquals("A user with this name already exists!", thrown.getMessage());
 	}
+	
+	
 
 }

@@ -1,8 +1,8 @@
 package com.sclass.controllers;
 
-import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import com.sclass.models.Build;
 import com.sclass.models.User;
 import com.sclass.services.UserService;
 
@@ -11,6 +11,7 @@ import io.javalin.http.Context;
 public class UserController {
 
 	private static UserService us;
+	private static Logger log = LogManager.getLogger(UserController.class);
 
 	public UserController(UserService us) {
 		UserController.us = us; //this way because it's static
@@ -18,35 +19,40 @@ public class UserController {
 
 	public void loginUser(Context ctx) {
 		User u = ctx.bodyAsClass(User.class);
-		System.out.println(u);
-		User loggedIn = us.login(u.getUsername(), u.getPass());
-
-		if (loggedIn != null) {
+		log.info("HTTP POST Request received at endpoint /login");
+		User loggedIn;
+		try {
+			loggedIn = us.login(u.getUsername(), u.getPass());
+			log.info("Successful login for user " + u.getUsername());
 			ctx.json(loggedIn);
 			ctx.status(200);
+		} catch (Exception e) {
+			log.error("Couldn't login user with username " + u.getUsername() + " and password " + u.getPass());
+			ctx.status(404);
+			
+			ctx.json(e);
 		}
 
-		else {
-			ctx.status(404);
-		}
+//		if (loggedIn != null) {
+//			
+//		} else {
+//			
+//		}
 
 	}
 
 	public void createAccount(Context ctx) {
 		User u = ctx.bodyAsClass(User.class);
+		log.info("HTTP POST Request received at endpoint /createAccount");
+		
 		try { 
-
 			User newU = us.createUserAccount(u.getUsername(), u.getPass());
-
-			if (newU != null) {
-				ctx.json(newU);
-				ctx.status(200);
-			}
-			else {
-				ctx.status(404);
-			}
+			log.info("Successful created account with username " + newU.getUsername());
+			ctx.json(newU);
+			ctx.status(200);
 		}
 		catch(Exception e) {
+			log.error(e.getMessage());
 			ctx.json(e);
 			ctx.status(400);
 		}
@@ -55,4 +61,4 @@ public class UserController {
 	
 	
 
-}//file
+}
