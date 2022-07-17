@@ -12,6 +12,9 @@ public class Build {
 	private int psuId;
 	private int caseId;
 	private boolean hasFourRAM;
+	
+	public Build() {
+	}
 
 	public Build(int buildId, int userId, String buildName, int moboId, int cpuId, int ramId, int storageId, int psuId,
 			int caseId, boolean hasFourRAM) {
