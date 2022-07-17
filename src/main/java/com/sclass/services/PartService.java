@@ -24,7 +24,7 @@ public class PartService {
 	public List<Part> getPartsByType(Part.partType partType) throws Exception {
 		List<Part> parts = partDao.getPartsByType(partType);
 		if (parts.isEmpty()) {
-			throw new Exception("No parts of type: \"" + partType.toString() + "\" are available.");
+			throw new Exception("No parts of type: " + partType.toString() + " are available.");
 		}
 		return parts;
 	}
@@ -40,10 +40,8 @@ public class PartService {
 	public List<Part> getAllPartsWithParams(double priceFloor, double priceCeiling) throws Exception {
 		List<Part> parts = partDao.getAllPartsWithParams(priceFloor, priceCeiling);
 		if (parts == null || parts.isEmpty()) {
-			System.out.println(("No parts available between: $" + priceFloor + " and $" + priceCeiling));
 			throw new Exception("No parts available between: $" + priceFloor + " and $" + priceCeiling);
 		}
-
 		return parts;
 	}
 

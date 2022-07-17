@@ -19,6 +19,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.sclass.models.Build;
+import com.sclass.models.BuildWithNames;
 import com.sclass.models.Part;
 import com.sclass.models.Part.manufacturer;
 import com.sclass.models.Part.partType;
@@ -146,12 +147,12 @@ public class BuildServiceTests {
 
 	@Test
 	public void getAllBuildsForUser() {
-		List<Build> builds = new ArrayList<>();
-		builds.add(new Build(1, 1, "My Build", 1, 2, 3, 4, 5, 6, false));
-		builds.add(new Build(2, 1, "My Second Build", 7, 8, 9, 10, 11, 12, true));
+		List<BuildWithNames> builds = new ArrayList<>();
+		builds.add(new BuildWithNames(1, "My Build", "MB", "CPU", "RAM", "Storage", "PSU", "Case", false, 400.00));
+		builds.add(new BuildWithNames(2, "My Second Build", "MB2", "CPU2", "RAM2", "Storage2", "PSU2", "Case2", true, 200.00));
 
-		when(buildDaoMock.getAllBuildsForUser(anyInt())).thenReturn(builds);
+		when(buildDaoMock.getAllBuildsWithNames(anyInt())).thenReturn(builds);
 
-		assertEquals(builds, buildService.getAllBuildsForUser(1));
+		assertEquals(builds, buildService.getAllBuildsWithNames(1));
 	}
 }
