@@ -3,20 +3,16 @@ package com.sclass.services;
 import java.util.List;
 
 import com.sclass.models.Build;
-import com.sclass.models.BuildWithNames;
-import com.sclass.models.Part;
 import com.sclass.repositories.BuildDAO;
-import com.sclass.repositories.PartDAO;
 
 public class BuildService {
 
 	private static BuildDAO buildDao;
-	private static PartDAO partDao;
-
-	public BuildService(BuildDAO buildDao, PartDAO partDao) {
-		BuildService.buildDao = buildDao;
-		BuildService.partDao = partDao;
+	
+	public BuildService(BuildDAO buildDao) {
+		this.buildDao = buildDao;
 	}
+
 
 	public Build createBuild(int userId, String name, int moboId, int cpuId, int ramId, int storageId, int psuId,
 			int caseId, boolean hasFourRam) throws Exception {
@@ -149,5 +145,6 @@ public class BuildService {
 		} else {
 			return deletedBuild;
 		}
+
 	}
 }

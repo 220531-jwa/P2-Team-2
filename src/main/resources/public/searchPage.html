@@ -5,21 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Part Search Page</title>
+    <style>
+body {
+  background-image: url("https://media.istockphoto.com/photos/computer-parts-picture-id1305845416?b=1&k=20&m=1305845416&s=170667a&w=0&h=mGckiKNqoPFamsR3eXijucfPGf9ZHRdkr6J_ZjmrR-w=");
+  background-color: #cccccc;
+  background-repeat: no-repeat;
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+}
 
-    <link rel="stylesheet" href="styles.css">
+        label {
+color: #B4886B;
+font-weight: bold;
+display: block;
+width: 150px;
+float: left;
+}
+label:after { content: ": " }
+
+th {
+    color: #B4886B;
+font-weight: bold;
+font-size: 30px;
+text-align: center;
+}
+    </style>
+
+    <link rel="stylesheet" href= "/P2-Team-2/src/main/resources/public/styles.css">
 
 </head>
 <body onload="guestLogin()">
+
+    
+
+    
+    
+    
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a id ="home"class="navbar-brand" href="home.html">Return home</a>
         <a id ="logout" class="navbar-brand" href="loginPage.html" onclick="logout()">Logout</a>
 	</nav>
 
     <div>
-
-        <label for="priceFloorInput">Minimum Price$</label>
+        
+        <label class="label is-warning" for="priceFloorInput">Minimum Price$</label>
         <input id = "priceFloorInput" type ="number" min ="0" >
-        <label for="priceCeilingInput">Maximum Price$</label>
+        <label class="label" for="priceCeilingInput">Maximum Price$</label>
         <input id = "priceCeilingInput" type ="number" min ="0" >
         <br>
         <!-- <select id="partTypeSelector">
@@ -32,13 +64,13 @@
             <option value="CASE">Case</option>
         </select> -->
         <!-- <br> -->
-        <button id ="searchButton" type ="button" onclick="searchForParts()">Submit Search</button>
+        <button class="button is-warning" id ="searchButton" type ="button" onclick="searchForParts()">Submit Search</button>
         <br>
         <table id="resultTable">
            
             <tr>
                <!-- <th>id</th> -->
-               <th>Name</th>
+               <th is-bordered is-striped>Name</th>
                <th>Type</th>
                <th>Price</th>
                <th>Wattage</th>

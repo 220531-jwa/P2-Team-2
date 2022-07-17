@@ -98,6 +98,7 @@ public class BuildController {
 		}
 
 	}
+
 	
 	public void getSingleBuild(Context ctx) {
 		int buildId = Integer.parseInt(ctx.pathParam("buildId"));
@@ -128,5 +129,6 @@ public class BuildController {
 			ctx.json(e);
 			ctx.status(404);
 		}
+
 	}
 }
