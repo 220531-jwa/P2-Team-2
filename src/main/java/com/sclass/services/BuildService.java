@@ -136,4 +136,14 @@ public class BuildService {
 			return build;
 		}
 	}
+	
+	public Build deleteBuild(int id) throws Exception {
+		Build deletedBuild = buildDao.deleteBuild(id);
+		
+		if (deletedBuild == null) {
+			throw new Exception("Cannot delete build: Build with id " + id + " doesn't exist");
+		} else {
+			return deletedBuild;
+		}
+	}
 }

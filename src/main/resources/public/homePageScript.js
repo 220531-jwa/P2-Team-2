@@ -15,16 +15,13 @@ async function PopulateBuilds(){
 
     else{
         let res = await fetch(`
-                ${baseUrl}/users/${JSON.parse(foundUser).id}/builds`, //endpoint?
+                ${baseUrl}/users/${JSON.parse(foundUser).id}/builds`,
                 {
                     method: 'GET',
-                    header: {'Content-Type': 'application/json'},
-                    
-                    
+                    header: {'Content-Type': 'application/json'}
                 });
 
         let resJson = await res.json()
-
         .then((resp) =>{
             console.log(resp);
 
@@ -35,25 +32,26 @@ async function PopulateBuilds(){
              var row = table.insertRow(-1);
 
              var cell0 = row.insertCell(0);
-             cell0.id='Build ID';
+             
              var cell1 = row.insertCell(1);
-             cell1.id='Build Name';
+             
              var cell2 = row.insertCell(2);
-             cell2.id='Motherboard';
+             
              var cell3 = row.insertCell(3);
-             cell3.id='CPU';
+             
              var cell4 = row.insertCell(4);
-             cell4.id='RAM';
+             
              var cell5 = row.insertCell(5);
-             cell5.id='Storage';
+             
              var cell6 = row.insertCell(6);
-             cell6.id='PSU';
+             
              var cell7 = row.insertCell(7);
-             cell7.id='Case';
+             
              var cell8 = row.insertCell(8);
-             cell8.id='Total Cost';
+             
              var cell9 = row.insertCell(9);
-             cell9.id='Edit Build';
+             
+             var cell10 = row.insertCell(10);
 
              
             cell0.innerText = entry.buildId;
@@ -76,13 +74,14 @@ async function PopulateBuilds(){
             cell7.innerText = entry.caseName;
             cell8.innerText = `$${entry.totalCost.toFixed(2)}`;
             cell9.innerHTML = `<button type='button' class='btn btn-primary' onclick='update(this)'>Edit</button>`;
+            cell10.innerHTML = `<button type='button' class='btn btn-primary' onclick='deleteRow(this)'>Delete</button>`;
 
              }  
         })
 
-        .catch((error)=>{console.log(error);
+        .catch((error)=>{
             console.log(error);
-            });
+        });
                 
     }
 }
@@ -93,8 +92,6 @@ function update(cell) {
     let rowNum = cell.closest("tr").rowIndex;
     let getId = document.getElementById("buildTable").rows[rowNum].cells[0].innerHTML;
 
-   
-    
     sessionStorage.setItem("fetchThis", JSON.stringify(getId));
     // console.log(getId);
     //  console.log(JSON.parse(sessionStorage.getItem('fetchThis')));
@@ -102,10 +99,29 @@ function update(cell) {
 
 }
 
-// function test(){
-//     let input = document.getElementById("testIn").value;
-//     // sessionStorage.removeItem('fetchThis');
-//     sessionStorage.setItem('fetchThis',input);
-//     window.location.assign("editBuildPage.html");
-// }
+async function deleteRow(cell) {
+    rowNum = cell.closest("tr").rowIndex;
+    let id = document.getElementById("buildTable").rows[rowNum].cells[0].innerHTML;
 
+    let user = JSON.parse(sessionStorage.getItem("inUser"));
+
+        let res = await fetch(
+            `${baseUrl}/users/${user.id}/builds/${id}`,
+            {
+                method: 'DELETE',
+                header: { 'Content-Type': 'application/json' }
+            }
+        );
+        let resJson = await res.json()
+            .then((resp) => {
+                if (res.status === 404) {
+                    alert(resp.message);
+                } else {
+                    document.getElementById("buildTable").deleteRow(rowNum);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                alert('Failed to delete build');
+            });
+}

@@ -215,6 +215,29 @@ public class BuildDAO {
 		}
 
 		return null;
-
+	}
+	
+	public Build deleteBuild(int id) {
+		String sql = "delete from pcbuilder.builds where build_id = ? returning *";
+		
+		try (Connection conn = cu.getConnection()) {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				return new Build(rs.getInt("build_id"), rs.getInt("user_id"), rs.getString("build_name"),
+						rs.getInt("build_mobo"), rs.getInt("build_cpu"), rs.getInt("build_ram"),
+						rs.getInt("build_storage"), rs.getInt("build_power_supply"), rs.getInt("build_case"),
+						rs.getBoolean("build_has_four_ram"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 }
