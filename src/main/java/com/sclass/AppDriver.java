@@ -1,9 +1,6 @@
 package com.sclass;
 
-import static io.javalin.apibuilder.ApiBuilder.get;
-import static io.javalin.apibuilder.ApiBuilder.path;
-import static io.javalin.apibuilder.ApiBuilder.post;
-import static io.javalin.apibuilder.ApiBuilder.put;
+import static io.javalin.apibuilder.ApiBuilder.*;
 
 import com.sclass.controllers.BuildController;
 import com.sclass.controllers.PartController;
@@ -46,6 +43,7 @@ public class AppDriver {
 						path("/{buildId}", () -> {
 							put(bc::editBuild);
 							get(bc::getSingleBuild);
+							delete(bc::deleteBuild);
 						});
 					});
 					path("otherBuilds",()->{

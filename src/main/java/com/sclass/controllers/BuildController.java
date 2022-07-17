@@ -100,7 +100,7 @@ public class BuildController {
 	}
 	
 	public void getSingleBuild(Context ctx) {
-		int buildId =Integer.parseInt(ctx.pathParam("buildId"));
+		int buildId = Integer.parseInt(ctx.pathParam("buildId"));
 		
 		try {
 			BuildWithNames returnit = bs.getSingleBuild(buildId);
@@ -110,9 +110,23 @@ public class BuildController {
 			// turn the message into an alert on the page
 			ctx.status(404);
 			e.printStackTrace();
-		}
-		
-		
+		}		
 	}
 
+	public void deleteBuild(Context ctx) {
+		int userId = Integer.parseInt(ctx.pathParam("id"));
+		int buildId = Integer.parseInt(ctx.pathParam("buildId"));
+		log.info("HTTP DELETE Request received at endpoint /users/" + userId + "/builds " + buildId);
+		
+		try {
+			Build deletedBuild = bs.deleteBuild(buildId);
+			log.info("User with id " + userId + " successfully deleted build with id " + buildId);
+			ctx.json(deletedBuild);
+			ctx.status(200);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			ctx.json(e);
+			ctx.status(404);
+		}
+	}
 }
