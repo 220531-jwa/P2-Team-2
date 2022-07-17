@@ -129,7 +129,7 @@ async function deleteRow(cell) {
 async function showOtherBuilds() {
     let newTable = document.createElement('table');
     let holderDiv = document.getElementById("holder");
-    holderDiv.innerHTML = "";
+    
     newTable.innerHTML = `<tr>
     <th>ID</th>
     <th>Name</th>
@@ -162,6 +162,7 @@ async function showOtherBuilds() {
 
             .then((resp) => {
                 console.log(resp);
+                holderDiv.innerHTML = "";
 
                 // let table = document.getElementById("buildTableBody");
 
