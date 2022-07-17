@@ -39,6 +39,24 @@ public class BuildController {
 		ctx.status(200);
 	}
 
+	public void getOtherBuilds(Context ctx) {
+		int id=Integer.parseInt(ctx.pathParam("id"));
+		log.info("HTTP GET Request received at endpoint /users/" + id + "/otherBuilds");
+		List<BuildWithNames> buildList = bs.getOtherBuildsWithNames(id);
+		if (buildList.isEmpty()) {
+			// valid user, no builds
+//			log.info("Successfully got builds for user with id " + id + " but they have no builds currently");
+		}
+//		if (buildList == null) {
+//			// something wrong
+//		} 
+		else {
+			log.info("Successfully got builds for users with id other than " + id);
+		}
+		ctx.json(buildList);
+		ctx.status(200);
+	}
+	
 	public void createBuild(Context ctx) {
 		int userId = Integer.parseInt(ctx.pathParam("id"));
 		log.info("HTTP POST Request received at endpoint /users/" + userId + "/builds");

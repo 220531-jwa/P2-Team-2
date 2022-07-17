@@ -88,6 +88,10 @@ public class BuildService {
 		return buildDao.getAllBuildsWithNames(userId);
 	}
 
+
+	public List<BuildWithNames> getOtherBuildsWithNames(int userId) {
+		return buildDao.getOtherBuildsWithNames(userId);
+	}
 	public Build editBuild(Build bodyAsBuild) throws Exception {
 		Build build = buildDao.getBuildById(bodyAsBuild.getBuildId());
 		if (build == null) {
@@ -136,4 +140,5 @@ public class BuildService {
 			return build;
 		}
 	}
+
 }
