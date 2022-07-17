@@ -12,7 +12,7 @@ public class Build {
 	private int psuId;
 	private int caseId;
 	private boolean hasFourRAM;
-
+	
 	public Build() {
 	}
 
