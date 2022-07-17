@@ -48,6 +48,9 @@ public class AppDriver {
 							get(bc::getSingleBuild);
 						});
 					});
+					path("otherBuilds",()->{
+						get(bc::getOtherBuilds);
+					});
 				});
 			});
 			path("/search", () -> {

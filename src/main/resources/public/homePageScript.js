@@ -79,7 +79,7 @@ async function PopulateBuilds(){
 
              }  
         })
-
+        
         .catch((error)=>{console.log(error);
             console.log(error);
             });
@@ -109,3 +109,107 @@ function update(cell) {
 //     window.location.assign("editBuildPage.html");
 // }
 
+async function showOtherBuilds(){
+let newTable = document.createElement('table');
+let holderDiv =document.getElementById("holder");
+holderDiv.innerHTML ="";
+newTable.innerHTML =`<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Motherboard</th>
+<th>CPU</th>
+<th>RAM</th>
+
+<th>Storage</th>
+<th>PSU</th>
+<th>Case</th>
+<th>Total Cost</th>
+
+</tr>`
+
+
+let foundUser = (sessionStorage.getItem('inUser'));
+
+    if (foundUser == null){
+        console.log("your not logged in!");
+        // return;
+    }
+
+    else{
+        let res = await fetch(`
+                ${baseUrl}/users/${JSON.parse(foundUser).id}/otherBuilds`, 
+                {
+                    method: 'GET',
+                    header: {'Content-Type': 'application/json'},
+                    
+                    
+                });
+
+        let resJson = await res.json()
+
+        .then((resp) =>{
+            console.log(resp);
+
+            // let table = document.getElementById("buildTableBody");
+
+             for (let entry of resp){
+
+             var row = newTable.insertRow(-1);
+
+             var cell0 = row.insertCell(0);
+             
+             var cell1 = row.insertCell(1);
+         
+             var cell2 = row.insertCell(2);
+ 
+             var cell3 = row.insertCell(3);
+
+             var cell4 = row.insertCell(4);
+
+             var cell5 = row.insertCell(5);
+
+             var cell6 = row.insertCell(6);
+
+             var cell7 = row.insertCell(7);
+
+             var cell8 = row.insertCell(8);
+   
+            //  var cell9 = row.insertCell(9);
+       
+
+             
+            cell0.innerText = entry.buildId;
+            cell1.innerText = entry.buildName;
+            cell2.innerText = entry.moboName;
+            cell3.innerText = entry.cpuName;
+
+            let ramy = entry.ramName;
+            if (!entry.hasFourRAM)
+                {ramy +=" x2"
+            }
+            else{
+                ramy +=" x4"
+            }
+            cell4.innerText = ramy;
+            
+            
+            cell5.innerText = entry.storageName;
+            cell6.innerText = entry.psuName;
+            cell7.innerText = entry.caseName;
+            cell8.innerText = `$${entry.totalCost.toFixed(2)}`;
+            // cell9.innerHTML = `<button type='button' class='btn btn-primary' onclick='update(this)'>Edit</button>`;
+
+             }  
+        })
+        
+        .catch((error)=>{console.log(error);
+            console.log(error);
+            });
+                
+    }
+
+
+
+holderDiv.appendChild(newTable);
+
+}
