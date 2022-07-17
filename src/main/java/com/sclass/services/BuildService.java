@@ -48,11 +48,8 @@ public class BuildService {
 			}
 		}
 
-		try {
-			checkCompatibility(mobo, cpu, ram, storage, psu, casePart, hasFourRam);
-		} catch (Exception e) {
-			throw e;
-		}
+		// Will throw exception if build doesn't work
+		checkCompatibility(mobo, cpu, ram, storage, psu, casePart, hasFourRam);
 
 		return buildDao.createBuild(userId, name, moboId, cpuId, ramId, storageId, psuId, caseId, hasFourRam);
 	}
@@ -87,15 +84,71 @@ public class BuildService {
 		}
 	}
 
-	public List<Build> getAllBuildsForUser(int userId) {
-		return buildDao.getAllBuildsForUser(userId);
-	}
-
 	public List<BuildWithNames> getAllBuildsWithNames(int userId) {
 		return buildDao.getAllBuildsWithNames(userId);
 	}
 
-	public Build editBuild(Build bodyAsBuild) {
-		return buildDao.editBuild(bodyAsBuild);
+
+	public List<BuildWithNames> getOtherBuildsWithNames(int userId) {
+		return buildDao.getOtherBuildsWithNames(userId);
+	}
+	public Build editBuild(Build bodyAsBuild) throws Exception {
+		Build build = buildDao.getBuildById(bodyAsBuild.getBuildId());
+		if (build == null) {
+			throw new Exception("Build with id " + bodyAsBuild.getBuildId() + " doesn't exist.");
+		} else {
+			List<Part> partsInBuild = partDao.getPartsInBuild(bodyAsBuild.getMoboId(), bodyAsBuild.getCpuId(), 
+					bodyAsBuild.getRamId(), bodyAsBuild.getStorageId(), bodyAsBuild.getPsuId(), bodyAsBuild.getCaseId());
+			
+			Part mobo = null, cpu = null, ram = null, storage = null, psu = null, casePart = null;
+			for (Part part : partsInBuild) {
+				switch (part.getPartType()) {
+				case MOBO:
+					mobo = part;
+					break;
+				case CPU:
+					cpu = part;
+					break;
+				case RAM:
+					ram = part;
+					break;
+				case STORAGE:
+					storage = part;
+					break;
+				case PSU:
+					psu = part;
+					break;
+				case CASE:
+					casePart = part;
+					break;
+				}
+			}
+
+			checkCompatibility(mobo, cpu, ram, storage, psu, casePart, bodyAsBuild.isHasFourRAM());
+			
+			return buildDao.editBuild(bodyAsBuild);
+		}
+	}
+
+	public BuildWithNames getSingleBuild(int buildId) throws Exception {
+		
+		BuildWithNames build = buildDao.getSingleBuildWithNames(buildId);
+		if (build == null) {
+			throw new Exception("Build with id " + buildId + " doesn't exist.");
+		} else {
+			System.out.println(build);
+			return build;
+		}
+	}
+	
+	public Build deleteBuild(int id) throws Exception {
+		Build deletedBuild = buildDao.deleteBuild(id);
+		
+		if (deletedBuild == null) {
+			throw new Exception("Cannot delete build: Build with id " + id + " doesn't exist");
+		} else {
+			return deletedBuild;
+		}
+
 	}
 }

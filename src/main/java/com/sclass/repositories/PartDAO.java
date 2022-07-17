@@ -134,7 +134,6 @@ public class PartDAO {
 				String partName = rs.getString("part_name");
 //				partType partType = rs.getObject("part_type", partType.class);
 				partType partT = partType.valueOf(rs.getString("part_type"));
-				System.out.println(partT);
 				int partWattage = rs.getInt("part_wattage");
 				double partPrice = rs.getDouble("part_price");
 				
@@ -150,9 +149,6 @@ public class PartDAO {
 				parts.add(part);
 			}
 			
-			for (Part p : parts) {
-				System.out.println(p);
-			}
 			return parts;
 
 		} catch (SQLException e) {
