@@ -38,7 +38,7 @@ function populateDropdowns(partsList) {
         let partType = part.partType;
         let newOption = document.createElement('option');
         newOption.setAttribute('value', part.partId);
-        newOption.innerText = `$${part.partPrice} ${part.partName}`;
+        newOption.innerText = `$${part.partPrice} ${part.partName} - ${part.partWattage}W`;
 
         switch(partType) {
             case('MOBO'):
@@ -55,7 +55,7 @@ function populateDropdowns(partsList) {
                 storageSelector.appendChild(newOption);
                 break;
             case('PSU'):
-                newOption.innerText += ' - ' + part.partWattage + 'W';
+                newOption.innerText += " capacity";
                 psuSelector.appendChild(newOption);
                 break;
             case('CASE'):

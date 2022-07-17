@@ -20,17 +20,24 @@ public class UserController {
 	public void loginUser(Context ctx) {
 		User u = ctx.bodyAsClass(User.class);
 		log.info("HTTP POST Request received at endpoint /login");
-		User loggedIn = us.login(u.getUsername(), u.getPass());
-
-		if (loggedIn != null) {
+		User loggedIn;
+		try {
+			loggedIn = us.login(u.getUsername(), u.getPass());
 			log.info("Successful login for user " + u.getUsername());
 			ctx.json(loggedIn);
 			ctx.status(200);
-		} else {
+		} catch (Exception e) {
 			log.error("Couldn't login user with username " + u.getUsername() + " and password " + u.getPass());
 			ctx.status(404);
-			ctx.result("Couldn't login user");
+			
+			ctx.json(e);
 		}
+
+//		if (loggedIn != null) {
+//			
+//		} else {
+//			
+//		}
 
 	}
 

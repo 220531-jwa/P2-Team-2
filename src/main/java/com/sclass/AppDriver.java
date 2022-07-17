@@ -46,6 +46,9 @@ public class AppDriver {
 							delete(bc::deleteBuild);
 						});
 					});
+					path("otherBuilds",()->{
+						get(bc::getOtherBuilds);
+					});
 				});
 			});
 			path("/search", () -> {

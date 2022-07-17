@@ -5,6 +5,12 @@ async function login(){
     let username = document.getElementById("usernameInput").value;
     let pass = document.getElementById("passwordInput").value;
 
+    if (username.trim() ==="" || pass.trim() === ""){
+        alert("please fill both inputs");
+        return;
+    }
+
+
     let user = {
         username: username,
         pass: pass,
@@ -49,6 +55,11 @@ async function createAccount(){
 
     let username = document.getElementById("usernameInput").value;
     let pass = document.getElementById("passwordInput").value;
+
+    if (username.trim() ==="" || pass.trim() === ""){
+        alert("please fill both inputs");
+        return;
+    }
 
     let user = {
         username: username,
